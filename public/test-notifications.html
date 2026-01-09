@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Test Notificaciones FCM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .status-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .status-item {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        
+        .status-label {
+            font-weight: bold;
+            color: #667eea;
+            display: inline-block;
+            min-width: 150px;
+        }
+        
+        .status-value {
+            color: #666;
+        }
+        
+        .status-value.success {
+            color: #28a745;
+        }
+        
+        .status-value.error {
+            color: #dc3545;
+        }
+        
+        .status-value.warning {
+            color: #ffc107;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #764ba2;
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .log {
+            background: #1e1e1e;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 6px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+        
+        .log-entry {
+            margin: 5px 0;
+        }
+        
+        .log-entry.error {
+            color: #ff6b6b;
+        }
+        
+        .log-entry.success {
+            color: #51cf66;
+        }
+        
+        .log-entry.warning {
+            color: #ffd43b;
+        }
+        
+        .log-entry.info {
+            color: #74c0fc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Notificaciones FCM</h1>
+        
+        <div class="status-box">
+            <div class="status-item">
+                <span class="status-label">Navegador:</span>
+                <span class="status-value" id="browserStatus">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Service Worker:</span>
+                <span class="status-value" id="swStatus">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Permisos:</span>
+                <span class="status-value" id="permissionStatus">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Token FCM:</span>
+                <span class="status-value" id="tokenStatus">-</span>
+            </div>
+        </div>
+        
+        <button onclick="checkBrowser()">✅ Verificar Navegador</button>
+        <button onclick="registerServiceWorker()">🔧 Registrar Service Worker</button>
+        <button onclick="requestNotificationPermission()">🔔 Solicitar Permisos</button>
+        <button onclick="getFirebaseToken()">🔑 Obtener Token FCM</button>
+        <button onclick="registerToken()">💾 Registrar Token en Backend</button>
+        <button onclick="sendTestNotification()">📨 Enviar Notificación de Prueba</button>
+        <button onclick="clearLog()">🗑️ Limpiar Log</button>
+        
+        <div class="log" id="log"></div>
+    </div>
+
+    <script>
+        const log = document.getElementById('log');
+        let firebaseToken = null;
+
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function clearLog() {
+            log.innerHTML = '';
+            addLog('Log limpiado', 'success');
+        }
+
+        function checkBrowser() {
+            addLog('Verificando navegador...', 'info');
+            
+            const checks = {
+                'Notification': 'Notification' in window,
+                'ServiceWorker': 'serviceWorker' in navigator,
+                'Promise': 'Promise' in window,
+                'fetch': 'fetch' in window
+            };
+
+            let allOk = true;
+            Object.entries(checks).forEach(([name, supported]) => {
+                const status = supported ? '✅' : '❌';
+                addLog(`${status} ${name}: ${supported ? 'Soportado' : 'No soportado'}`, supported ? 'success' : 'error');
+                if (!supported) allOk = false;
+            });
+
+            document.getElementById('browserStatus').textContent = allOk ? '✅ Compatible' : '❌ Incompatible';
+            document.getElementById('browserStatus').className = allOk ? 'status-value success' : 'status-value error';
+        }
+
+        async function registerServiceWorker() {
+            addLog('Registrando Service Worker...', 'info');
+
+            if (!('serviceWorker' in navigator)) {
+                addLog('Service Worker no soportado', 'error');
+                return;
+            }
+
+            try {
+                const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js', {
+                    scope: '/'
+                });
+                addLog(`✅ Service Worker registrado exitosamente`, 'success');
+                addLog(`Scope: ${registration.scope}`, 'info');
+                addLog(`State: ${registration.installing ? 'installing' : registration.waiting ? 'waiting' : registration.active ? 'active' : 'unknown'}`, 'info');
+
+                document.getElementById('swStatus').textContent = '✅ Registrado';
+                document.getElementById('swStatus').className = 'status-value success';
+            } catch (error) {
+                addLog(`❌ Error registrando Service Worker: ${error.message}`, 'error');
+                document.getElementById('swStatus').textContent = '❌ Error';
+                document.getElementById('swStatus').className = 'status-value error';
+            }
+        }
+
+        async function requestNotificationPermission() {
+            addLog('Solicitando permisos de notificación...', 'info');
+
+            if (!('Notification' in window)) {
+                addLog('Notificaciones no soportadas', 'error');
+                return;
+            }
+
+            const current = Notification.permission;
+            addLog(`Permiso actual: ${current}`, 'info');
+
+            if (current === 'granted') {
+                addLog('Ya tienes permisos otorgados', 'success');
+                document.getElementById('permissionStatus').textContent = '✅ Otorgado';
+                document.getElementById('permissionStatus').className = 'status-value success';
+                return;
+            }
+
+            if (current === 'denied') {
+                addLog('Permisos denegados. Debes habilitarlos en la configuración del navegador', 'error');
+                document.getElementById('permissionStatus').textContent = '❌ Denegado';
+                document.getElementById('permissionStatus').className = 'status-value error';
+                return;
+            }
+
+            try {
+                const permission = await Notification.requestPermission();
+                addLog(`Respuesta: ${permission}`, 'info');
+
+                if (permission === 'granted') {
+                    addLog('✅ Permisos otorgados por el usuario', 'success');
+                    document.getElementById('permissionStatus').textContent = '✅ Otorgado';
+                    document.getElementById('permissionStatus').className = 'status-value success';
+                } else {
+                    addLog('❌ Permisos denegados', 'warning');
+                    document.getElementById('permissionStatus').textContent = '❌ Denegado';
+                    document.getElementById('permissionStatus').className = 'status-value error';
+                }
+            } catch (error) {
+                addLog(`Error solicitando permisos: ${error.message}`, 'error');
+            }
+        }
+
+        async function getFirebaseToken() {
+            addLog('Obteniendo token FCM de Firebase...', 'info');
+
+            try {
+                // Cargar Firebase
+                if (typeof firebase === 'undefined') {
+                    addLog('Firebase no está cargado. Cargando...', 'info');
+                    
+                    // Cargar scripts de Firebase
+                    await loadScript('https://www.gstatic.com/firebasejs/12.4.0/firebase-app-compat.js');
+                    await loadScript('https://www.gstatic.com/firebasejs/12.4.0/firebase-messaging-compat.js');
+                    addLog('✅ Firebase cargado', 'success');
+                }
+
+                // Configuración de Firebase (obtenida del frontend .env)
+                const firebaseConfig = {
+                    apiKey: "AIzaSyBHs7LqvDhW3sxM-h27rPX-gdbCp0f9TZk",
+                    authDomain: "cober360-cec7f.firebaseapp.com",
+                    projectId: "cober360-cec7f",
+                    storageBucket: "cober360-cec7f.appspot.com",
+                    messagingSenderId: "847903689649",
+                    appId: "1:847903689649:web:57bc5e0c8a7cfe9c5c7fa2"
+                };
+
+                if (!firebase.apps.length) {
+                    firebase.initializeApp(firebaseConfig);
+                    addLog('✅ Firebase inicializado', 'success');
+                }
+
+                const messaging = firebase.messaging();
+                const vapidKey = "BD-ojC_j5se6x-e3nyXRHRXvsoedUaEEEnVRxtZ02sZpd_kzwNol8pA2OlvagOLdKrLWkHnCtGfQMgUJc_su6MM";
+
+                const token = await messaging.getToken({ vapidKey });
+                
+                if (token) {
+                    firebaseToken = token;
+                    addLog(`✅ Token obtenido: ${token.substring(0, 30)}...`, 'success');
+                    document.getElementById('tokenStatus').textContent = '✅ Obtenido';
+                    document.getElementById('tokenStatus').className = 'status-value success';
+                    
+                    // Guardar en localStorage
+                    localStorage.setItem('fcm_token', token);
+                    addLog('Token guardado en localStorage', 'info');
+                } else {
+                    addLog('No se pudo obtener el token', 'error');
+                    document.getElementById('tokenStatus').textContent = '❌ Fallo';
+                    document.getElementById('tokenStatus').className = 'status-value error';
+                }
+            } catch (error) {
+                addLog(`Error obteniendo token: ${error.message}`, 'error');
+                document.getElementById('tokenStatus').textContent = '❌ Error';
+                document.getElementById('tokenStatus').className = 'status-value error';
+            }
+        }
+
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        async function registerToken() {
+            addLog('Registrando token en backend...', 'info');
+
+            if (!firebaseToken) {
+                addLog('No hay token. Obtén uno primero', 'error');
+                return;
+            }
+
+            try {
+                // Obtener token de autenticación del usuario
+                const authToken = localStorage.getItem('token');
+                if (!authToken) {
+                    addLog('No hay token de autenticación. Inicia sesión primero', 'error');
+                    return;
+                }
+
+                const response = await fetch('http://localhost:4000/api/fcm/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({
+                        token: firebaseToken,
+                        deviceInfo: {
+                            device: navigator.userAgent,
+                            platform: navigator.platform,
+                            appVersion: navigator.appVersion
+                        }
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    addLog(`✅ Token registrado: ${data.message}`, 'success');
+                    addLog(`Nuevo: ${data.nuevo}`, 'info');
+                } else {
+                    addLog(`❌ Error: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                addLog(`Error registrando token: ${error.message}`, 'error');
+            }
+        }
+
+        async function sendTestNotification() {
+            addLog('Enviando notificación de prueba...', 'info');
+
+            try {
+                const authToken = localStorage.getItem('token');
+                if (!authToken) {
+                    addLog('No hay token de autenticación', 'error');
+                    return;
+                }
+
+                const response = await fetch('http://localhost:4000/api/fcm/test', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    addLog(`✅ Notificación enviada`, 'success');
+                    addLog(`Enviadas: ${data.resultado.enviadas}, Fallidas: ${data.resultado.fallidas}`, 'info');
+                } else {
+                    addLog(`❌ Error: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                addLog(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Inicialización
+        window.addEventListener('load', () => {
+            addLog('Página cargada', 'success');
+            checkBrowser();
+        });
+    </script>
+</body>
+</html>

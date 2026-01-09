@@ -1,0 +1,410 @@
+import { useState, useEffect, useRef } from 'react';
+import { Card, Badge, Table, Button, Spinner, Alert, Row, Col, Form } from 'react-bootstrap';
+import { 
+  FaUsers, FaEye, FaWifi, FaSync, FaClock, FaUserCheck,
+  FaCircle, FaChartBar, FaSignal, FaTimes, FaExclamationTriangle, FaHeart
+} from 'react-icons/fa';
+import { io } from 'socket.io-client';
+import { ENDPOINTS } from '../config';
+import useHeartbeat from '../../hooks/useHeartbeat';
+
+const ActiveUsersMonitor = () => {
+  const [activeUsers, setActiveUsers] = useState([]);
+  const [statistics, setStatistics] = useState(null);
+  const [connected, setConnected] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
+  const [timeframe, setTimeframe] = useState(5);
+  const [connectedAdmins, setConnectedAdmins] = useState(0);
+  const [autoRefresh, setAutoRefresh] = useState(true);
+  
+  const socketRef = useRef(null);
+
+  // Hook de heartbeat para mantener esta sesión activa
+  const { manualHeartbeat, isActive: heartbeatActive } = useHeartbeat({
+    interval: 30000, // 30 segundos
+    enabled: true,
+    currentPage: '/admin/usuarios/activos'
+  });
+
+  // Función para obtener datos de forma manual (fallback)
+  const fetchActiveUsersManual = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${ENDPOINTS.ADMIN}/users/active?timeframe=${timeframe}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      
+      if (data.success) {
+        setActiveUsers(data.data.active_users);
+        setLastUpdated(data.data.last_updated);
+        setError(null);
+      } else {
+        throw new Error(data.message || 'Error obteniendo usuarios activos');
+      }
+    } catch (error) {
+      console.error('❌ Error en fetchActiveUsersManual:', error);
+      setError(error.message);
+    }
+  };
+
+  // Función para obtener estadísticas
+  const fetchStatistics = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${ENDPOINTS.ADMIN}/users/activity-stats`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          setStatistics(data.data);
+        }
+      }
+    } catch (error) {
+      console.error('❌ Error obteniendo estadísticas:', error);
+    }
+  };
+
+  // Inicializar WebSocket
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setError('Token de autenticación no encontrado');
+      setLoading(false);
+      return;
+    }
+
+    // Configurar WebSocket
+    const socket = io(`${ENDPOINTS.BASE_URL}/admin`, {
+      auth: { token },
+      transports: ['websocket', 'polling'],
+      forceNew: true
+    });
+
+    socketRef.current = socket;
+
+    // Eventos de conexión
+    socket.on('connect', () => {
+      console.log('✅ Conectado al monitor de usuarios activos');
+      setConnected(true);
+      setError(null);
+      setLoading(false);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('❌ Desconectado del monitor de usuarios activos');
+      setConnected(false);
+    });
+
+    socket.on('connect_error', (error) => {
+      console.error('❌ Error de conexión WebSocket:', error);
+      setConnected(false);
+      setError(`Error de conexión: ${error.message}`);
+      setLoading(false);
+      
+      // Fallback a fetch manual
+      fetchActiveUsersManual();
+      fetchStatistics();
+    });
+
+    // Recibir actualizaciones de usuarios activos
+    socket.on('active_users_update', (data) => {
+      console.log('📊 Actualización recibida:', data);
+      setActiveUsers(data.active_users);
+      setStatistics(data.statistics);
+      setLastUpdated(data.last_updated);
+      setConnectedAdmins(data.connected_admins);
+      setError(null);
+    });
+
+    // Manejar errores
+    socket.on('error', (error) => {
+      console.error('❌ Error del servidor:', error);
+      setError(error.message);
+    });
+
+    // Cleanup
+    return () => {
+      if (socketRef.current) {
+        socketRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  // Cambiar timeframe
+  useEffect(() => {
+    if (connected && socketRef.current) {
+      socketRef.current.emit('change_timeframe', timeframe);
+    } else {
+      // Si no hay WebSocket, usar fetch manual
+      fetchActiveUsersManual();
+    }
+  }, [timeframe, connected]);
+
+  // Auto-refresh cuando no hay WebSocket
+  useEffect(() => {
+    if (!connected && autoRefresh) {
+      const interval = setInterval(() => {
+        fetchActiveUsersManual();
+        fetchStatistics();
+      }, 30000); // Cada 30 segundos
+
+      return () => clearInterval(interval);
+    }
+  }, [connected, autoRefresh, timeframe]);
+
+  // Función para refrescar manualmente
+  const handleManualRefresh = async () => {
+    // Enviar heartbeat manual al refrescar
+    await manualHeartbeat('refresh');
+    
+    if (connected && socketRef.current) {
+      socketRef.current.emit('request_update');
+    } else {
+      setLoading(true);
+      Promise.all([fetchActiveUsersManual(), fetchStatistics()])
+        .finally(() => setLoading(false));
+    }
+  };
+
+  // Formatear tiempo desde última actividad
+  const formatTimeSinceActivity = (minutes) => {
+    if (isNaN(minutes) || minutes < 0) return 'Sin datos';
+    if (minutes < 1) return 'Ahora mismo';
+    if (minutes < 60) return `Hace ${minutes} min`;
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    if (hours < 24) return `Hace ${hours}h ${remainingMinutes}min`;
+    const days = Math.floor(hours / 24);
+    return `Hace ${days} días`;
+  };
+
+  // Obtener color del badge según el rol
+  const getRoleBadge = (role, roleName, roleColor) => {
+    return <Badge bg={roleColor}>{roleName}</Badge>;
+  };
+
+  // Obtener indicador de estado de conexión
+  const getStatusIndicator = (minutesAgo) => {
+    if (isNaN(minutesAgo) || minutesAgo < 0) return <FaCircle className="text-secondary me-1" title="Sin datos" />;
+    if (minutesAgo <= 2) return <FaCircle className="text-success me-1" title="Online" />;
+    if (minutesAgo <= 5) return <FaCircle className="text-warning me-1" title="Activo recientemente" />;
+    return <FaCircle className="text-secondary me-1" title="Inactivo" />;
+  };
+
+  if (loading && activeUsers.length === 0) {
+    return (
+      <Card className="shadow-sm">
+        <Card.Body className="text-center py-4">
+          <Spinner animation="border" variant="primary" />
+          <p className="mt-3 mb-0">Conectando al monitor de usuarios activos...</p>
+        </Card.Body>
+      </Card>
+    );
+  }
+
+  return (
+    <div>
+      {/* Header con controles */}
+      <Card className="shadow-sm mb-4">
+        <Card.Header className="bg-primary text-white">
+          <Row className="align-items-center">
+            <Col md={6}>
+              <h5 className="mb-0">
+                <FaUsers className="me-2" />
+                Monitor de Usuarios Activos
+                {connected ? (
+                  <FaWifi className="ms-2 text-success" title="Conectado en tiempo real" />
+                ) : (
+                  <FaExclamationTriangle className="ms-2 text-warning" title="Desconectado - Modo manual" />
+                )}
+                {heartbeatActive && (
+                  <FaHeart className="ms-2 text-light" title="Heartbeat activo" style={{animation: 'pulse 1.5s infinite'}} />
+                )}
+              </h5>
+            </Col>
+            <Col md={6} className="text-end">
+              <div className="d-flex align-items-center justify-content-end gap-3">
+                <Form.Select 
+                  size="sm" 
+                  value={timeframe} 
+                  onChange={(e) => setTimeframe(parseInt(e.target.value))}
+                  style={{ width: 'auto' }}
+                >
+                  <option value={1}>Último minuto</option>
+                  <option value={5}>Últimos 5 min</option>
+                  <option value={15}>Últimos 15 min</option>
+                  <option value={30}>Últimos 30 min</option>
+                  <option value={60}>Última hora</option>
+                </Form.Select>
+                
+                <Button 
+                  size="sm" 
+                  variant="outline-light" 
+                  onClick={handleManualRefresh}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <Spinner animation="border" size="sm" />
+                  ) : (
+                    <FaSync />
+                  )}
+                </Button>
+              </div>
+            </Col>
+          </Row>
+        </Card.Header>
+
+        <Card.Body>
+          {/* Estadísticas resumen */}
+          {statistics && (
+            <Row className="mb-3">
+              <Col md={3}>
+                <div className="text-center p-2 bg-success text-white rounded">
+                  <div className="h4 mb-1">{activeUsers.length}</div>
+                  <small>Activos ahora</small>
+                </div>
+              </Col>
+              <Col md={3}>
+                <div className="text-center p-2 bg-info text-white rounded">
+                  <div className="h4 mb-1">{statistics.summary.active_today}</div>
+                  <small>Activos hoy</small>
+                </div>
+              </Col>
+              <Col md={3}>
+                <div className="text-center p-2 bg-warning text-white rounded">
+                  <div className="h4 mb-1">{statistics.summary.enabled_users}</div>
+                  <small>Usuarios habilitados</small>
+                </div>
+              </Col>
+              <Col md={3}>
+                <div className="text-center p-2 bg-secondary text-white rounded">
+                  <div className="h4 mb-1">{connectedAdmins}</div>
+                  <small>Admins conectados</small>
+                </div>
+              </Col>
+            </Row>
+          )}
+
+          {/* Estado de conexión */}
+          <div className="d-flex align-items-center justify-content-between mb-3">
+            <div className="d-flex align-items-center">
+              <span className="me-2">Estado:</span>
+              {connected ? (
+                <Badge bg="success">
+                  <FaSignal className="me-1" />
+                  Tiempo Real
+                </Badge>
+              ) : (
+                <Badge bg="warning">
+                  <FaClock className="me-1" />
+                  Modo Manual
+                </Badge>
+              )}
+            </div>
+            
+            {lastUpdated && (
+              <small className="text-muted">
+                Última actualización: {new Date(lastUpdated).toLocaleTimeString()}
+              </small>
+            )}
+          </div>
+
+          {/* Mostrar errores */}
+          {error && (
+            <Alert variant="warning" className="mb-3">
+              <FaExclamationTriangle className="me-2" />
+              {error}
+              {!connected && (
+                <div className="mt-2">
+                  <small>Usando modo de actualización manual. Los datos se actualizan cada 30 segundos.</small>
+                </div>
+              )}
+            </Alert>
+          )}
+        </Card.Body>
+      </Card>
+
+      {/* Tabla de usuarios activos */}
+      <Card className="shadow-sm">
+        <Card.Header>
+          <h6 className="mb-0">
+            <FaUserCheck className="me-2" />
+            Usuarios Activos (últimos {timeframe} minutos)
+          </h6>
+        </Card.Header>
+        
+        <Card.Body className="p-0">
+          {activeUsers.length === 0 ? (
+            <div className="text-center py-4">
+              <FaUsers className="text-muted mb-3" size={48} />
+              <p className="text-muted mb-0">
+                No hay usuarios activos en los últimos {timeframe} minutos
+              </p>
+            </div>
+          ) : (
+            <Table responsive hover className="mb-0">
+              <thead className="bg-light">
+                <tr>
+                  <th>Estado</th>
+                  <th>Usuario</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                  <th>Última Actividad</th>
+                  <th>Tiempo</th>
+                </tr>
+              </thead>
+              <tbody>
+                {activeUsers.map((user) => (
+                  <tr key={user.id}>
+                    <td>
+                      {getStatusIndicator(user.minutes_since_activity)}
+                    </td>
+                    <td>
+                      <strong>{user.first_name} {user.last_name}</strong>
+                      <div className="small text-muted">ID: {user.id}</div>
+                    </td>
+                    <td>{user.email}</td>
+                    <td>{getRoleBadge(user.role, user.role_name, user.role_color)}</td>
+                    <td>
+                      <div>{user.last_activity_time || user.last_login_time || 'Sin datos'}</div>
+                      <small className="text-muted">{user.last_activity_date || user.last_login_date || 'Sin fecha'}</small>
+                    </td>
+                    <td>
+                      <Badge 
+                        bg={
+                          isNaN(user.minutes_since_activity) ? 'secondary' :
+                          user.minutes_since_activity <= 2 ? 'success' : 
+                          user.minutes_since_activity <= 5 ? 'warning' : 'secondary'
+                        }
+                      >
+                        {formatTimeSinceActivity(user.minutes_since_activity)}
+                      </Badge>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+        </Card.Body>
+      </Card>
+    </div>
+  );
+};
+
+export default ActiveUsersMonitor;

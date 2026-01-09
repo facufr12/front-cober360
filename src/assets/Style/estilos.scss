@@ -1,0 +1,3843 @@
+
+
+// ✅ CORRECCIONES: Prevenir problemas de scroll
+@import 'scroll-fixes.css';
+
+// ✅ IMPORTAR: Solo Lato de Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+// ✅ PERSONALIZAR: Variables de Bootstrap con Lato
+$font-family-sans-serif: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-weight-lighter: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-bolder: 900;
+
+// 🎨 PALETA DE COLORES PRINCIPAL - Sofisticada y Elegante
+// Color principal - Púrpura pastel elegante
+$primary: purple;    // Púrpura pastel principal COBER
+$primary-50: #f8f7ff;       // Muy claro para backgrounds
+$primary-100: #f0eeff;      // Claro para hover states
+$primary-200: #e1dcff;      // Para borders suaves
+$primary-300: #c9bfff;      // Para disabled states
+$primary-400: #a396e6;      // Para hover más intenso
+$primary-500: #8B7EC8;      // Color principal
+$primary-600: #7d6fb3;      // Para hover buttons
+$primary-700: #6d5e9e;      // Para active states
+$primary-800: #5c4d89;      // Para textos importantes
+$primary-900: #4a3c74;      // Para headers y navegación
+
+// 🎨 COLORES BASE CORPORATIVOS
+$corporate-dark: #2D3047;   // Azul gris profundo corporativo
+$corporate-light: #3a405a;  // Versión más clara del corporativo
+$corporate-lighter: #454d6d; // Aún más claro
+$corporate-accent: #048A81;  // Verde azulado complementario
+
+// 🎨 PALETA EXTENDIDA BASADA EN LOS COLORES CORPORATIVOS
+// Derivados del azul gris corporativo (#2D3047)
+$dark: #2D3047;             // Color corporativo principal
+$dark-50: #f7f7f9;          // Muy claro
+$dark-100: #ebedf2;         // Claro
+$dark-200: #d1d5df;         // Borders
+$dark-300: #a8b0c4;         // Disabled
+$dark-400: #6b7596;         // Texto secundario
+$dark-500: #4a526b;         // Texto principal
+$dark-600: #3a405a;         // Hover
+$dark-700: #2D3047;         // Principal
+$dark-800: #252a3d;         // Active
+$dark-900: #1d2133;         // Headers
+
+// Derivados del verde azulado (#048A81)
+$secondary: #048A81;        // Verde azulado principal
+$secondary-50: #f0fdfc;     // Muy claro
+$secondary-100: #ccfbf1;    // Claro
+$secondary-200: #99f6e4;    // Borders
+$secondary-300: #5eead4;    // Disabled
+$secondary-400: #2dd4bf;    // Hover
+$secondary-500: #14b8a6;    // Principal alternativo
+$secondary-600: #0d9488;    // Principal
+$secondary-700: #048A81;    // Principal oscuro
+$secondary-800: #065f56;    // Active
+$secondary-900: #064e3b;    // Headers
+
+// 🎨 COLORES COMPLEMENTARIOS ARMÓNICOS
+$accent: #E07A5F;           // Coral cálido (complementario del verde azulado)
+$accent-light: #f2a28a;     // Coral claro
+$accent-dark: #cc6747;      // Coral oscuro
+
+$tertiary: #F2D7D5;         // Rosa suave (armonía con púrpura)
+$tertiary-light: #f8e8e7;   // Rosa muy claro
+$tertiary-dark: #e8c5c2;    // Rosa medio
+
+// 🎨 COLORES FUNCIONALES (Estados y feedback)
+$success: #48BB78;          // Verde natural (éxito/aprobado)
+$success-light: #9AE6B4;    // Verde claro
+$success-dark: #38A169;     // Verde oscuro
+
+$warning: #ED8936;          // Naranja cálido (advertencias)
+$warning-light: #F6AD55;    // Naranja claro
+$warning-dark: #DD6B20;     // Naranja oscuro
+
+$danger: #E53E3E;           // Rojo elegante (errores/rechazado)
+$danger-light: #FC8181;     // Rojo claro
+$danger-dark: #C53030;      // Rojo oscuro
+
+// Reemplaza estas líneas (79-83) con los nuevos colores:
+
+$info: #9B95B3;             // Gris púrpura información
+$info-light: #C4BFD6;       // Gris púrpura claro
+$info-dark: #7A7190;        // Gris púrpura oscuro
+
+// 🎨 ESCALA DE GRISES ELEGANTE
+$white: #ffffff;
+$gray-50: #fafbfc;          // Background muy claro
+$gray-100: #f4f6f8;         // Background claro
+$gray-200: #e8ecf0;         // Borders suaves
+$gray-300: #d1d7dd;         // Disabled elements
+$gray-400: #b3bcc7;         // Placeholders
+$gray-500: #8492a6;         // Body text secundario
+$gray-600: #5a6a7a;         // Body text principal
+$gray-700: #3e4954;         // Headings
+$gray-800: #2a3039;         // Títulos importantes
+$gray-900: #1a1f26;         // Negro elegante
+$black: #000000;
+
+// 🎨 COLORES PARA DIFERENTES SECCIONES DE LA APP
+// Vendedores - Tonos púrpura pastel
+$vendedor-primary: $primary;
+$vendedor-secondary: #9B8CE8;    // Púrpura más vibrante
+$vendedor-accent: #B8A9FF;       // Púrpura muy suave
+
+// Prospectos/Clientes - Tonos verde azulado
+$cliente-primary: $secondary;
+$cliente-secondary: #06A096;     // Verde azulado más intenso
+$cliente-accent: #40E0D0;        // Turquesa
+
+// Pólizas/Documentos - Tonos coral
+$poliza-primary: $accent;
+$poliza-secondary: #FF6B47;      // Coral más vibrante
+$poliza-accent: #FFB199;         // Coral muy suave
+
+// Dashboard/Analytics - Tonos azul corporativo
+$dashboard-primary: $dark;
+$dashboard-secondary: $corporate-light;
+$dashboard-accent: $corporate-lighter;
+
+// 🎨 COLORES ESPECÍFICOS PARA ESTADOS DE PÓLIZAS
+$poliza-activa: $success;        // Verde para activas
+$poliza-pendiente: $warning;     // Naranja para pendientes
+$poliza-cancelada: $danger;      // Rojo para canceladas
+$poliza-temporal: $info;         // Azul para temporales
+$poliza-vencida: $gray-500;      // Gris para vencidas
+
+// 🎨 GRADIENTES ELEGANTES Y SOFISTICADOS
+$gradient-primary: linear-gradient(135deg, #{$primary} 0%, #{lighten($primary, 10%)} 100%);
+$gradient-secondary: linear-gradient(135deg, #{$secondary} 0%, #{lighten($secondary, 10%)} 100%);
+$gradient-accent: linear-gradient(135deg, #{$accent} 0%, #{lighten($accent, 10%)} 100%);
+$gradient-corporate: linear-gradient(135deg, #{$dark} 0%, #{$corporate-light} 100%);
+
+// Gradientes multicolor sofisticados
+$gradient-wellness: linear-gradient(135deg, #{$primary}, #{$secondary});
+$gradient-elegance: linear-gradient(135deg, #{$dark}, #{$primary});
+$gradient-warmth: linear-gradient(135deg, #{$accent}, #{lighten($accent, 15%)});
+$gradient-professional: linear-gradient(135deg, #{$dark}, #{$secondary});
+$gradient-harmony: linear-gradient(135deg, #{$primary}, #{$accent}, #{$secondary});
+
+// 🎨 COLORES PARA BACKGROUNDS
+$bg-primary: $gray-50;           // Background principal
+$bg-secondary: $white;           // Cards y contenido
+$bg-dark: $dark;                 // Dark mode
+$bg-corporate: $corporate-dark;  // Background corporativo
+$bg-overlay: rgba(139, 126, 200, 0.1); // Overlay con púrpura pastel
+
+// 🎨 COLORES PARA TEXTOS
+$text-primary: $gray-800;        // Texto principal
+$text-secondary: $gray-600;      // Texto secundario
+$text-muted: $gray-500;         // Texto deshabilitado
+$text-light: $gray-400;         // Placeholders
+$text-inverse: $white;          // Texto sobre fondos oscuros
+$text-corporate: $corporate-dark; // Texto corporativo
+
+// Bordes redondeados modernos
+$border-radius: 0.875rem;       // 14px
+$border-radius-sm: 0.625rem;    // 10px
+$border-radius-lg: 1.125rem;    // 18px
+$border-radius-xl: 1.5rem;      // 24px
+$border-radius-2xl: 2rem;       // 32px
+
+// Sombras sofisticadas
+$shadow-primary: 0 4px 6px -1px rgba(139, 126, 200, 0.1), 0 2px 4px -2px rgba(139, 126, 200, 0.1);
+$shadow-primary-lg: 0 10px 15px -3px rgba(139, 126, 200, 0.1), 0 4px 6px -4px rgba(139, 126, 200, 0.1);
+$shadow-corporate: 0 4px 6px -1px rgba(45, 48, 71, 0.15), 0 2px 4px -2px rgba(45, 48, 71, 0.15);
+$shadow-elegant: 0 20px 25px -5px rgba(45, 48, 71, 0.1), 0 8px 10px -6px rgba(45, 48, 71, 0.1);
+
+// Variables CSS personalizadas con la nueva paleta elegante
+:root {
+  // Colores principales
+  --color-primary: #{$primary};
+  --color-primary-50: #{$primary-50};
+  --color-primary-100: #{$primary-100};
+  --color-primary-200: #{$primary-200};
+  --color-primary-300: #{$primary-300};
+  --color-primary-400: #{$primary-400};
+  --color-primary-500: #{$primary-500};
+  --color-primary-600: #{$primary-600};
+  --color-primary-700: #{$primary-700};
+  --color-primary-800: #{$primary-800};
+  --color-primary-900: #{$primary-900};
+  
+  // Colores corporativos
+  --color-corporate: #{$corporate-dark};
+  --color-corporate-light: #{$corporate-light};
+  --color-secondary: #{$secondary};
+  --color-accent: #{$accent};
+  
+  // Estados
+  --color-success: #{$success};
+  --color-warning: #{$warning};
+  --color-danger: #{$danger};
+  --color-info: #{$info};
+  
+  // Grises elegantes
+  --color-gray-50: #{$gray-50};
+  --color-gray-100: #{$gray-100};
+  --color-gray-200: #{$gray-200};
+  --color-gray-300: #{$gray-300};
+  --color-gray-400: #{$gray-400};
+  --color-gray-500: #{$gray-500};
+  --color-gray-600: #{$gray-600};
+  --color-gray-700: #{$gray-700};
+  --color-gray-800: #{$gray-800};
+  --color-gray-900: #{$gray-900};
+  
+  // Gradientes sofisticados
+  --gradient-primary: #{$gradient-primary};
+  --gradient-secondary: #{$gradient-secondary};
+  --gradient-corporate: #{$gradient-corporate};
+  --gradient-wellness: #{$gradient-wellness};
+  --gradient-elegance: #{$gradient-elegance};
+  --gradient-harmony: #{$gradient-harmony};
+  
+  // Sombras elegantes
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-primary: #{$shadow-primary};
+  --shadow-corporate: #{$shadow-corporate};
+  --shadow-elegant: #{$shadow-elegant};
+  
+  // Transiciones suaves
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-elegant: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+// Importar Bootstrap con nuestras variables personalizadas
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+// ✅ ESTILOS GLOBALES ELEGANTES
+* {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  background: $bg-primary;
+  color: $text-primary;
+}
+
+// ✅ TÍTULOS ELEGANTES
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+  color: $text-corporate;
+}
+
+// Títulos con gradiente COBER elegante
+.title-gradient {
+  background: $gradient-harmony;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-corporate {
+  background: $gradient-elegance;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ✅ BOTONES ELEGANTES Y SOFISTICADOS
+.btn {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border-radius: $border-radius;
+  padding: 0.875rem 1.75rem;
+  transition: var(--transition-elegant);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  text-transform: none;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+  
+  &:hover {
+    // Removido transform: translateY(-3px) que afecta el layout
+    box-shadow: var(--shadow-lg);
+  }
+  
+  // Botón principal COBER - Púrpura pastel
+  &-primary {
+    background: $primary;
+    border-color: $primary;
+    color: white;
+    
+    &:hover {
+      background: $primary-600;
+      border-color: $primary-600;
+      box-shadow: $shadow-primary-lg;
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(139, 126, 200, 0.25);
+    }
+  }
+  
+  // Botón corporativo - Azul gris profundo
+  &-corporate {
+    background: $corporate-dark;
+    border-color: $corporate-dark;
+    color: white;
+    
+    &:hover {
+      background: $corporate-light;
+      border-color: $corporate-light;
+      box-shadow: $shadow-corporate;
+    }
+  }
+  
+  // Botón secundario - Verde azulado
+  &-secondary {
+    background: $secondary;
+    border-color: $secondary;
+    color: white;
+    
+    &:hover {
+      background: $secondary-700;
+      border-color: $secondary-700;
+    }
+  }
+  
+  // Botón de acento - Coral cálido
+  &-accent {
+    background: $accent;
+    border-color: $accent;
+    color: white;
+    
+    &:hover {
+      background: $accent-dark;
+      border-color: $accent-dark;
+    }
+  }
+  
+  // Botón con gradiente elegante
+  &-gradient {
+    background: $gradient-harmony;
+    border: none;
+    color: white;
+    
+    &:hover {
+      background: $gradient-elegance;
+      transform: translateY(-4px);
+    }
+  }
+  
+  // Botón outline elegante
+  &-outline-primary {
+    border-color: $primary;
+    color: $primary;
+    background: transparent;
+    
+    &:hover {
+      background: $primary;
+      border-color: $primary;
+      color: white;
+    }
+  }
+  
+  // Botón glass sofisticado
+  &-glass {
+    background: rgba(139, 126, 200, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(139, 126, 200, 0.2);
+    color: $primary;
+    
+    &:hover {
+      background: rgba(139, 126, 200, 0.15);
+      color: $primary-700;
+    }
+  }
+  
+  // Botón corporativo glass
+  &-glass-corporate {
+    background: rgba(45, 48, 71, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(45, 48, 71, 0.2);
+    color: $corporate-dark;
+    
+    &:hover {
+      background: rgba(45, 48, 71, 0.15);
+      color: $corporate-light;
+    }
+  }
+}
+
+// ✅ CARDS ELEGANTES Y SOFISTICADAS
+.card {
+  border: none;
+  border-radius: $border-radius-xl;
+  background: $bg-secondary;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-elegant);
+  overflow: hidden;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #D0142B 0%, #FFA200 33%, #12BBC6 66%, #003558 100%);
+  }
+  
+  // ✅ CARD SIN BORDE ANIMADO SUPERIOR (Minimalista)
+  &.card-no-border {
+    &::before {
+      display: none;
+    }
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid $gray-200;
+    
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-color: $gray-300;
+    }
+  }
+  
+  // ✅ CARD CON GRADIENTE (Solo para Información del Prospecto)
+  &.card-gradient-header::before {
+    display: block !important;
+    background: linear-gradient(90deg, #D0142B 0%, #FFA200 33%, #12BBC6 66%, #003558 100%);
+  }
+  
+  // ✅ CARD COMPLETAMENTE PLANA (sin efectos)
+  &.card-plain {
+    &::before {
+      display: none;
+    }
+    box-shadow: none;
+    border: 1px solid $gray-200;
+  }
+  
+  // &:hover {
+  //   transform: translateY(-10px);
+  //   box-shadow: var(--shadow-elegant);
+  // }
+  
+  // Card específica para vendedores
+  // &-vendedor {
+  //   &::before {
+  //     background: linear-gradient(90deg, $vendedor-primary, $vendedor-secondary);
+  //   }
+  // }
+  
+  // Card específica para clientes
+  // &-cliente {
+  //   &::before {
+  //     background: linear-gradient(90deg, $cliente-primary, $cliente-secondary);
+  //   }
+  // }
+  
+  // // Card específica para pólizas
+  // &-poliza {
+  //   &::before {
+  //     background: linear-gradient(90deg, $poliza-primary, $poliza-secondary);
+  //   }
+  // }
+  
+  // // Card corporativa
+  // &-corporate {
+  //   &::before {
+  //     background: $gradient-corporate;
+  //   }
+  // }
+  
+  .card-header {
+    background: $gray-50;
+    border-bottom: 1px solid $gray-200;
+    padding: 1.75rem;
+    
+    .card-title {
+      font-weight: 700;
+      color: $text-corporate;
+      margin: 0;
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// ✅ FORMULARIOS ELEGANTES
+.form-control, .form-select {
+  font-family: 'Lato', sans-serif;
+  border-radius: $border-radius;
+  border: 2px solid $gray-200;
+  padding: 0.875rem 1.25rem;
+  transition: var(--transition-elegant);
+  background: $bg-secondary;
+  color: $text-primary;
+  font-size: 0.95rem;
+  
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 0.2rem rgba(139, 126, 200, 0.12);
+    transform: translateY(-2px);
+  }
+  
+  &::placeholder {
+    color: $text-light;
+    font-style: italic;
+  }
+}
+
+.form-label {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  color: $text-corporate;
+  margin-bottom: 0.625rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// ✅ NAVEGACIÓN SOFISTICADA
+.navbar {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid $gray-200;
+  transition: var(--transition-elegant);
+  padding: 1rem 0;
+  
+  &-brand {
+    font-weight: 900;
+    font-size: 1.75rem;
+    
+    .logo-cober {
+      background: $gradient-harmony;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .logo-corporate {
+      color: $corporate-dark;
+    }
+  }
+  
+  .nav-link {
+    font-weight: 600;
+    color: $text-secondary;
+    padding: 0.625rem 1.25rem;
+    border-radius: $border-radius;
+    transition: var(--transition-elegant);
+    margin: 0 0.25rem;
+    
+    &:hover {
+      color: $primary;
+      background: $primary-50;
+      transform: translateY(-2px);
+    }
+    
+    &.active {
+      color: $primary;
+      background: $primary-100;
+    }
+  }
+}
+
+// ✅ BADGES ELEGANTES PARA ESTADOS
+.badge {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  border-radius: $border-radius;
+  padding: 0.5em 0.875em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  
+  &-poliza-activa {
+    background: $success;
+    color: white;
+  }
+  
+  &-poliza-pendiente {
+    background: $warning;
+    color: white;
+  }
+  
+  &-poliza-cancelada {
+    background: $danger;
+    color: white;
+  }
+  
+  &-poliza-temporal {
+    background: $info;
+    color: white;
+  }
+  
+  &-poliza-vencida {
+    background: $gray-500;
+    color: white;
+  }
+  
+  &-elegante {
+    background: $gradient-primary;
+    color: white;
+    border: none;
+  }
+}
+
+// ✅ CLASES UTILITARIAS ELEGANTES
+.text-primary { color: $primary !important; }
+.text-corporate { color: $corporate-dark !important; }
+.text-secondary { color: $secondary !important; }
+.text-accent { color: $accent !important; }
+.text-success { color: $success !important; }
+.text-warning { color: $warning !important; }
+.text-danger { color: $danger !important; }
+.text-info { color: $info !important; }
+.text-elegant { color: $gray-700 !important; }
+
+.bg-primary { background-color: $primary !important; }
+.bg-corporate { background-color: $corporate-dark !important; }
+.bg-secondary { background-color: $secondary !important; }
+.bg-accent { background-color: $accent !important; }
+.bg-gradient-primary { background: $gradient-primary !important; }
+.bg-gradient-corporate { background: $gradient-corporate !important; }
+.bg-gradient-harmony { background: $gradient-harmony !important; }
+.bg-gradient-elegance { background: $gradient-elegance !important; }
+
+// ✅ EFECTOS SOFISTICADOS
+.hover-elegant {
+  transition: var(--transition-elegant);
+  
+  &:hover {
+    color: $primary !important;
+    transform: translateY(-3px);
+  }
+}
+
+.hover-corporate {
+  transition: var(--transition-elegant);
+  
+  &:hover {
+    color: $corporate-dark !important;
+    transform: translateY(-3px);
+  }
+}
+
+.border-primary { border-color: $primary !important; }
+.border-corporate { border-color: $corporate-dark !important; }
+.border-secondary { border-color: $secondary !important; }
+.border-elegant { border-color: $gray-300 !important; }
+
+// ✅ LOADING Y SKELETON ELEGANTES
+.skeleton-elegant {
+  background: linear-gradient(90deg, $gray-200 25%, $gray-100 50%, $gray-200 75%);
+  background-size: 200% 100%;
+  animation: loading-elegant 2s infinite;
+  border-radius: $border-radius;
+}
+
+.loading-cober-elegant {
+  background: linear-gradient(90deg, $primary-200 25%, $primary-100 50%, $primary-200 75%);
+  background-size: 200% 100%;
+  animation: loading-elegant 2s infinite;
+  border-radius: $border-radius;
+}
+
+@keyframes loading-elegant {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// ✅ COMPONENTES ESPECIALES
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: $border-radius-xl;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.gradient-text-cober {
+  background: $gradient-harmony;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-corporate {
+  background: $gradient-elegance;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ✅ DARK MODE ELEGANTE
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #{$dark-900};
+    --color-bg-secondary: #{$dark-800};
+    --color-text-primary: #{$gray-100};
+    --color-text-secondary: #{$gray-300};
+  }
+}
+
+// ✅ RESPONSIVE ELEGANTE
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .card {
+    border-radius: $border-radius-lg;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+}
+
+.login{
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.05em;
+}
+
+.btn-primary-cards-vendedor {
+  background: purple;
+  color: white;
+  border-radius: $border-radius;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: var(--transition-elegant);
+  
+  &:hover {
+    background: rgb(87, 0, 87);
+    box-shadow: $shadow-primary-lg;
+    transform: translateY(-2px);
+  }
+}
+.btn-secondary-cards-vendedor {
+  background: #808080;
+  color: white;
+  border-radius: $border-radius;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: var(--transition-elegant);
+  
+  &:hover {
+    background: #5b5750;
+    box-shadow: $shadow-primary-lg;
+    transform: translateY(-2px);
+  }
+}
+
+.primary-200 {
+  background-color: var(--color-primary-200) !important;
+  color: rgb(2, 2, 2) !important;
+}
+
+.primary-300 {
+  background-color: var(--color-primary-300) !important;
+  color: white !important;
+}
+
+.primary-400 {
+  background-color: var(--color-primary-400) !important;
+  color: white !important;
+}
+.primary-500 {
+  background-color: var(--color-primary-500) !important;
+  color: white !important;
+}
+.primary-600 {
+  background-color: var(--color-primary-600) !important;
+  color: white !important;
+}
+
+.primary-700 {
+  background-color: var(--color-primary-700) !important;
+  color: white !important;
+}
+.primary-800 {
+  background-color: var(--color-primary-800) !important;
+  color: white !important;
+}
+.primary-900 {
+  background-color: var(--color-primary-900) !important;
+  color: white !important;
+}
+
+
+.pregunta-checkbox {
+  accent-color: #6d5e9e;
+  border-radius: 0.35em; // color primario, ajusta según tu paleta
+}
+
+.cotizacion-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  .card-header {
+    border-bottom: none;
+  }
+  .table th, .table td {
+    vertical-align: middle;
+    font-size: 0.95em;
+  }
+}
+
+.cotizacion-plan-classic {
+  background: linear-gradient(90deg, #8B7EC8 60%, #c9bfff 100%);
+}
+.cotizacion-plan-taylored {
+  background: linear-gradient(90deg, #14b8a6 60%, #5eead4 100%);
+}
+.cotizacion-plan-wagon {
+  background: linear-gradient(90deg, #E07A5F 60%, #f2a28a 100%);
+}
+.cotizacion-plan-coberx {
+  background: linear-gradient(90deg, #2D3047 60%, #a8b0c4 100%);
+}
+
+
+// ...existing code...
+
+// ✅ SIDEBAR ELEGANTE PARA PROSPECTOS DASHBOARD - TEMA CLARO
+.sidebar-vendedor {
+  background: linear-gradient(180deg, 
+    rgba(248, 250, 252, 0.98) 0%, 
+    rgba(255, 255, 255, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 25px rgba(148, 163, 184, 0.08);
+  transition: var(--transition-elegant);
+  z-index: 1020; /* Asegurar que esté por debajo del navbar (1050) */
+
+  /* Asegurar posicionamiento correcto para offcanvas mobile */
+  &.offcanvas-sidebar {
+    z-index: 1040; /* Para mobile, puede estar por encima del navbar cuando está abierto */
+  }
+  
+  .sidebar-header {
+    background: linear-gradient(135deg, 
+      rgba(248, 250, 252, 0.95) 0%, 
+      rgba(241, 245, 249, 0.98) 100%);
+    color: $text-corporate;
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    
+    .sidebar-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0;
+      letter-spacing: 0.025em;
+      color: $gray-800;
+      text-shadow: none;
+      
+      // Icono con color primario
+      .fa-tachometer-alt, .me-2 {
+        color: $primary;
+      }
+      
+      .fw-light {
+        color: $gray-600;
+        font-weight: 400;
+      }
+    }
+    
+    .sidebar-close-btn {
+      background: rgba(248, 250, 252, 0.9);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      color: $gray-600;
+      border-radius: $border-radius;
+      padding: 0.5rem 0.75rem;
+      transition: var(--transition-elegant);
+      
+      &:hover {
+        background: rgba(241, 245, 249, 1);
+        color: $primary;
+        transform: translateX(-2px);
+        box-shadow: 0 4px 12px rgba(148, 163, 184, 0.15);
+      }
+    }
+  }
+  
+  .sidebar-nav {
+    padding: 1rem 0;
+    background: transparent;
+    
+    .nav-item {
+      margin: 0.25rem 0.75rem;
+      border-radius: $border-radius;
+      overflow: hidden;
+      transition: var(--transition-elegant);
+      
+      .nav-link {
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        color: $gray-600;
+        padding: 1rem 1.25rem;
+        border-radius: $border-radius;
+        transition: var(--transition-elegant);
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        background: transparent;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 4px;
+          background: $primary;
+          transform: scaleY(0);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-icon {
+          margin-right: 0.875rem;
+          font-size: 1.1rem;
+          transition: var(--transition-elegant);
+          min-width: 20px;
+          color: $gray-500;
+        }
+        
+        .nav-text {
+          font-size: 0.95rem;
+          letter-spacing: 0.02em;
+          color: $gray-700;
+        }
+        
+        &:hover {
+          background: rgba(248, 250, 252, 0.8);
+          color: $primary;
+          transform: translateX(4px);
+          box-shadow: 0 2px 8px rgba(148, 163, 184, 0.1);
+          
+          &::before {
+            transform: scaleY(1);
+          }
+          
+          .nav-icon {
+            transform: scale(1.05);
+            color: $primary;
+          }
+          
+          .nav-text {
+            color: $primary;
+          }
+        }
+        
+        &.active {
+          background: linear-gradient(135deg, 
+            rgba(139, 126, 200, 0.08) 0%, 
+            rgba(139, 126, 200, 0.12) 100%);
+          color: $primary;
+          font-weight: 600;
+          box-shadow: 0 2px 8px rgba(139, 126, 200, 0.15);
+          transform: translateX(2px);
+          border: 1px solid rgba(139, 126, 200, 0.2);
+          
+          &::before {
+            transform: scaleY(1);
+            background: $primary;
+          }
+          
+          .nav-icon {
+            color: $primary;
+            transform: scale(1.05);
+          }
+          
+          .nav-text {
+            color: $primary;
+          }
+        }
+        
+        // Estilos específicos para botones de acción
+        &.nav-action {
+          background: rgba(248, 250, 252, 0.9);
+          border: 1px solid rgba(226, 232, 240, 0.8);
+          margin-top: 0.5rem;
+          color: $gray-700;
+          
+          .nav-icon {
+            color: $primary-600;
+          }
+          
+          &:hover {
+            background: rgba(139, 126, 200, 0.08);
+            color: $primary;
+            border-color: rgba(139, 126, 200, 0.3);
+            
+            .nav-icon {
+              color: $primary;
+            }
+          }
+        }
+        
+        &.nav-danger {
+          color: $gray-600;
+          
+          .nav-icon {
+            color: $danger-light;
+          }
+          
+          &:hover {
+            background: rgba(248, 113, 113, 0.08);
+            color: $danger;
+            
+            .nav-icon {
+              color: $danger;
+            }
+            
+            .nav-text {
+              color: $danger;
+            }
+          }
+        }
+      }
+    }
+    
+    // Separador visual más sutil
+    .nav-divider {
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(226, 232, 240, 0.6) 50%, 
+        transparent 100%);
+      margin: 1rem 1.25rem;
+    }
+    
+    // Sección de perfil en el sidebar
+    .nav-profile {
+      margin-top: auto;
+      padding: 1rem 1.25rem;
+      border-top: 1px solid rgba(226, 232, 240, 0.6);
+      background: rgba(248, 250, 252, 0.5);
+      
+      .profile-info {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(226, 232, 240, 0.6);
+        border-radius: $border-radius;
+        box-shadow: 0 2px 4px rgba(148, 163, 184, 0.05);
+        
+        .profile-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, $primary 0%, $primary-600 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-weight: 700;
+          margin-right: 0.75rem;
+          font-size: 1.1rem;
+          box-shadow: 0 2px 8px rgba(139, 126, 200, 0.3);
+        }
+        
+        .profile-details {
+          flex: 1;
+          
+          .profile-name {
+            font-weight: 600;
+            color: $gray-800;
+            font-size: 0.9rem;
+            margin: 0;
+          }
+          
+          .profile-role {
+            color: $gray-500;
+            font-size: 0.8rem;
+            margin: 0;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ✅ TOPBAR ELEGANTE PARA DASHBOARD - TEMA CLARO
+.dashboard-topbar {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  box-shadow: 0 1px 12px rgba(148, 163, 184, 0.08);
+  
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    .menu-toggle {
+      background: rgba(248, 250, 252, 0.9);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      color: $gray-600;
+      border-radius: $border-radius;
+      padding: 0.5rem 0.75rem;
+      transition: var(--transition-elegant);
+      
+      &:hover {
+        background: rgba(139, 126, 200, 0.08);
+        color: $primary;
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(139, 126, 200, 0.15);
+        border-color: rgba(139, 126, 200, 0.3);
+      }
+    }
+    
+    .topbar-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: $gray-800;
+      margin: 0;
+      
+      .title-accent {
+        background: linear-gradient(135deg, $primary 0%, $primary-600 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+  }
+  
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    
+    .view-toggle {
+      background: rgba(248, 250, 252, 0.9);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: $border-radius;
+      overflow: hidden;
+      
+      .btn {
+        border: none;
+        background: transparent;
+        color: $gray-600;
+        padding: 0.5rem 0.875rem;
+        transition: var(--transition-elegant);
+        
+        &:hover {
+          background: rgba(139, 126, 200, 0.08);
+          color: $primary;
+        }
+        
+        &.active {
+          background: $primary;
+          color: white;
+          box-shadow: 0 2px 6px rgba(139, 126, 200, 0.25);
+        }
+      }
+    }
+    
+    .new-prospect-btn {
+      background: linear-gradient(135deg, $primary 0%, $primary-600 100%);
+      border: none;
+      color: white;
+      border-radius: $border-radius;
+      padding: 0.625rem 1.25rem;
+      font-weight: 600;
+      transition: var(--transition-elegant);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(139, 126, 200, 0.2);
+      
+      &:hover {
+        background: linear-gradient(135deg, $primary-600 0%, $primary-700 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(139, 126, 200, 0.3);
+      }
+    }
+  }
+}
+
+// ✅ OFFCANVAS MÓVIL ELEGANTE - TEMA CLARO
+.offcanvas-sidebar {
+  .offcanvas-header {
+    background: linear-gradient(135deg, 
+      rgba(248, 250, 252, 0.98) 0%, 
+      rgba(241, 245, 249, 1) 100%);
+    color: $gray-800;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    
+    .offcanvas-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      color: $gray-800;
+    }
+    
+    .btn-close {
+      filter: none;
+      opacity: 0.7;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  
+  .offcanvas-body {
+    padding: 0;
+    background: linear-gradient(180deg, 
+      rgba(248, 250, 252, 0.98) 0%, 
+      rgba(255, 255, 255, 1) 100%);
+  }
+}
+
+// ✅ RESPONSIVE MEJORADO - TEMA CLARO
+@media (max-width: 768px) {
+  .dashboard-topbar {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    
+    .topbar-title {
+      font-size: 1.25rem;
+    }
+    
+    .topbar-right {
+      gap: 0.5rem;
+      
+      .new-prospect-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  .sidebar-vendedor {
+    background: rgba(255, 255, 255, 0.98);
+    
+    .nav-item .nav-link {
+      padding: 0.875rem 1rem;
+      
+      .nav-text {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// ✅ ESTADOS FOCUS Y ACTIVE MEJORADOS
+.sidebar-vendedor {
+  .nav-item .nav-link {
+    &:focus {
+      outline: 2px solid rgba(139, 126, 200, 0.3);
+      outline-offset: 2px;
+    }
+    
+    &:active {
+      transform: translateX(2px) scale(0.98);
+    }
+  }
+}
+
+// ✅ ESTILOS RESPONSIVOS PARA VENDEDORES SUPERVISOR
+.vendedores-supervisor {
+  // Mejoras para móvil
+  @media (max-width: 768px) {
+    .btn-group {
+      width: 100%;
+      
+      .btn {
+        flex: 1;
+      }
+    }
+    
+    .table-responsive {
+      font-size: 0.875rem;
+    }
+  }
+  
+  // Hover effect para las tarjetas
+  .hover-shadow {
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+  
+  // Estilo para indicadores de carga
+  .progress {
+    border-radius: 10px;
+    overflow: hidden;
+    
+    .progress-bar {
+      transition: width 0.6s ease;
+    }
+  }
+  
+  // Mejoras para badges
+  .badge {
+    font-size: 0.75em;
+    padding: 0.35em 0.65em;
+  }
+}
+
+// ✅ ESTILOS PARA MODALES RESPONSIVOS
+.modal-responsive {
+  .modal-dialog {
+    @media (max-width: 576px) {
+      margin: 0.5rem;
+      max-width: calc(100% - 1rem);
+    }
+  }
+  
+  .modal-footer {
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 0.5rem;
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+  
+  .table-responsive {
+    @media (max-width: 768px) {
+      font-size: 0.875rem;
+      
+      .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+// ✅ MEJORAS ADICIONALES PARA RESPONSIVIDAD
+@media (max-width: 576px) {
+  .h2-md {
+    font-size: 1.5rem !important;
+  }
+  
+  .btn-sm {
+    font-size: 0.75rem;
+  }
+  
+  .card-header {
+    padding: 0.75rem;
+  }
+  
+  .card-body {
+    padding: 0.75rem;
+  }
+  
+  .card-footer {
+    padding: 0.75rem;
+  }
+  
+  .w-100 {
+    width: 100% !important;
+  }
+  
+  .gap-1 {
+    gap: 0.25rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .w-md-auto {
+    width: auto !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .cursor-pointer:hover {
+    background-color: rgba(0, 0, 0, 0.025);
+  }
+}
+
+// ...existing code...
+
+// ...existing code...
+
+// ✅ SIDEBAR ELEGANTE PARA ADMIN DASHBOARD - TEMA CLARO
+.sidebar-admin {
+  background: linear-gradient(180deg, 
+    rgba(248, 250, 252, 0.98) 0%, 
+    rgba(255, 255, 255, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 25px rgba(148, 163, 184, 0.08);
+  transition: var(--transition-elegant);
+  
+  .sidebar-header {
+    background: linear-gradient(135deg, 
+      rgba(45, 48, 71, 0.95) 0%, 
+      rgba(58, 64, 90, 0.98) 100%);
+    color: white;
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    .sidebar-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0;
+      letter-spacing: 0.025em;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      
+      // Icono con gradiente
+      .admin-icon {
+        background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-right: 0.5rem;
+      }
+      
+      .fw-light {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 400;
+      }
+    }
+    
+    .sidebar-close-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: $border-radius;
+      padding: 0.5rem 0.75rem;
+      transition: var(--transition-elegant);
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateX(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+  
+  .sidebar-nav {
+    padding: 1rem 0;
+    background: transparent;
+    
+    .nav-item {
+      margin: 0.25rem 0.75rem;
+      border-radius: $border-radius;
+      overflow: hidden;
+      transition: var(--transition-elegant);
+      
+      .nav-link {
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        color: $gray-600;
+        padding: 1rem 1.25rem;
+        border-radius: $border-radius;
+        transition: var(--transition-elegant);
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        background: transparent;
+        border: none;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 4px;
+          background: $corporate-dark;
+          transform: scaleY(0);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-icon {
+          margin-right: 0.875rem;
+          font-size: 1.1rem;
+          transition: var(--transition-elegant);
+          min-width: 20px;
+          color: $gray-500;
+        }
+        
+        .nav-text {
+          font-size: 0.95rem;
+          letter-spacing: 0.02em;
+          color: $gray-700;
+        }
+        
+        &:hover {
+          background: rgba(45, 48, 71, 0.06);
+          color: $corporate-dark;
+          transform: translateX(4px);
+          box-shadow: 0 2px 8px rgba(45, 48, 71, 0.1);
+          
+          &::before {
+            transform: scaleY(1);
+          }
+          
+          .nav-icon {
+            transform: scale(1.05);
+            color: $corporate-dark;
+          }
+          
+          .nav-text {
+            color: $corporate-dark;
+          }
+        }
+        
+        &.active {
+          background: linear-gradient(135deg, 
+            rgba(45, 48, 71, 0.08) 0%, 
+            rgba(45, 48, 71, 0.12) 100%);
+          color: $corporate-dark;
+          font-weight: 600;
+          box-shadow: 0 2px 8px rgba(45, 48, 71, 0.15);
+          transform: translateX(2px);
+          border: 1px solid rgba(45, 48, 71, 0.2);
+          
+          &::before {
+            transform: scaleY(1);
+            background: $corporate-dark;
+          }
+          
+          .nav-icon {
+            color: $corporate-dark;
+            transform: scale(1.05);
+          }
+          
+          .nav-text {
+            color: $corporate-dark;
+          }
+        }
+      }
+    }
+    
+    // Separador visual
+    .nav-divider {
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(226, 232, 240, 0.6) 50%, 
+        transparent 100%);
+      margin: 1rem 1.25rem;
+    }
+    
+    // Sección de logout en el sidebar
+    .nav-logout {
+      margin-top: auto;
+      padding: 1rem 1.25rem;
+      border-top: 1px solid rgba(226, 232, 240, 0.6);
+      background: rgba(248, 250, 252, 0.5);
+      
+      .logout-btn {
+        background: rgba(229, 62, 62, 0.1);
+        border: 1px solid rgba(229, 62, 62, 0.2);
+        color: $danger;
+        border-radius: $border-radius;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        transition: var(--transition-elegant);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        
+        &:hover {
+          background: $danger;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(229, 62, 62, 0.25);
+        }
+      }
+    }
+  }
+}
+
+// ✅ TOPBAR ELEGANTE PARA ADMIN DASHBOARD
+.admin-topbar {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  box-shadow: 0 1px 12px rgba(148, 163, 184, 0.08);
+  
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    .menu-toggle {
+      background: rgba(248, 250, 252, 0.9);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      color: $gray-600;
+      border-radius: $border-radius;
+      padding: 0.5rem 0.75rem;
+      transition: var(--transition-elegant);
+      
+      &:hover {
+        background: rgba(45, 48, 71, 0.08);
+        color: $corporate-dark;
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(45, 48, 71, 0.15);
+        border-color: rgba(45, 48, 71, 0.3);
+      }
+    }
+    
+    .topbar-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: $gray-800;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      
+      .title-icon {
+        color: $corporate-dark;
+      }
+      
+      .title-text {
+        background: linear-gradient(135deg, $corporate-dark 0%, $gray-600 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+  }
+  
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    
+    .admin-badge {
+      background: linear-gradient(135deg, $corporate-dark 0%, $corporate-light 100%);
+      color: white;
+      border-radius: $border-radius;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(45, 48, 71, 0.2);
+    }
+  }
+}
+
+// ✅ OFFCANVAS MÓVIL ELEGANTE PARA ADMIN
+.offcanvas-admin {
+  .offcanvas-header {
+    background: linear-gradient(135deg, 
+      rgba(45, 48, 71, 0.95) 0%, 
+      rgba(58, 64, 90, 0.98) 100%);
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    .offcanvas-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-close {
+      filter: invert(1);
+      opacity: 0.8;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  
+  .offcanvas-body {
+    padding: 0;
+    background: linear-gradient(180deg, 
+      rgba(248, 250, 252, 0.98) 0%, 
+      rgba(255, 255, 255, 1) 100%);
+  }
+}
+
+// ✅ CARDS ESPECIALES PARA ADMIN MÓVIL
+.admin-card-mobile {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: $border-radius-lg;
+  transition: var(--transition-elegant);
+  overflow: hidden;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $corporate-dark, $corporate-light);
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(45, 48, 71, 0.15);
+    border-color: rgba(45, 48, 71, 0.3);
+  }
+  
+  .card-body {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      transition: var(--transition-elegant);
+    }
+    
+    .card-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: $gray-800;
+      margin: 0;
+      letter-spacing: 0.025em;
+    }
+  }
+  
+  // Colores específicos por tipo
+  &.card-usuarios {
+    .card-icon { color: $primary; }
+    &:hover .card-icon { transform: scale(1.1); }
+  }
+  
+  &.card-prestadores {
+    .card-icon { color: $success; }
+    &:hover .card-icon { transform: scale(1.1); }
+  }
+  
+  &.card-precios {
+    .card-icon { color: $warning; }
+    &:hover .card-icon { transform: scale(1.1); }
+  }
+  
+  &.card-estadisticas {
+    .card-icon { color: $info; }
+    &:hover .card-icon { transform: scale(1.1); }
+  }
+  
+  &.card-configuracion {
+    .card-icon { color: $secondary; }
+    &:hover .card-icon { transform: scale(1.1); }
+  }
+}
+
+// ✅ RESPONSIVE MEJORADO PARA ADMIN
+@media (max-width: 768px) {
+  .admin-topbar {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    
+    .topbar-title {
+      font-size: 1.25rem;
+      
+      .title-text {
+        display: none; // Ocultar texto largo en móvil
+      }
+    }
+    
+    .admin-badge {
+      font-size: 0.75rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+  
+  .sidebar-admin {
+    background: rgba(255, 255, 255, 0.98);
+    
+    .nav-item .nav-link {
+      padding: 0.875rem 1rem;
+      
+      .nav-text {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+
+// ...existing code...
+
+// ✅ SIDEBAR ELEGANTE PARA SUPERVISOR DASHBOARD - TEMA CLARO
+.sidebar-supervisor {
+  background: linear-gradient(180deg, 
+    rgba(248, 250, 252, 0.98) 0%, 
+    rgba(255, 255, 255, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 25px rgba(148, 163, 184, 0.08);
+  transition: var(--transition-elegant);
+  
+  .sidebar-header {
+    background: linear-gradient(135deg, 
+      rgba(20, 184, 166, 0.95) 0%, 
+      rgba(4, 138, 129, 0.98) 100%);
+    color: white;
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    .sidebar-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0;
+      letter-spacing: 0.025em;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      
+      // Icono con gradiente
+      .supervisor-icon {
+        background: linear-gradient(135deg, #fff 0%, #ccfbf1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-right: 0.5rem;
+      }
+      
+      .fw-light {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 400;
+      }
+    }
+    
+    .sidebar-close-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: $border-radius;
+      padding: 0.5rem 0.75rem;
+      transition: var(--transition-elegant);
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateX(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+  
+  .sidebar-nav {
+    padding: 1rem 0;
+    background: transparent;
+    
+    .nav-item {
+      margin: 0.25rem 0.75rem;
+      border-radius: $border-radius;
+      overflow: hidden;
+      transition: var(--transition-elegant);
+      
+      .nav-link {
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        color: $gray-600;
+        padding: 1rem 1.25rem;
+        border-radius: $border-radius;
+        transition: var(--transition-elegant);
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        background: transparent;
+        border: none;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 4px;
+          background: $secondary;
+          transform: scaleY(0);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-icon {
+          margin-right: 0.875rem;
+          font-size: 1.1rem;
+          transition: var(--transition-elegant);
+          min-width: 20px;
+          color: $gray-500;
+        }
+        
+        .nav-text {
+          font-size: 0.95rem;
+          letter-spacing: 0.02em;
+          color: $gray-700;
+        }
+        
+        &:hover {
+          background: rgba(20, 184, 166, 0.06);
+          color: $secondary;
+          transform: translateX(4px);
+          box-shadow: 0 2px 8px rgba(20, 184, 166, 0.1);
+          
+          &::before {
+            transform: scaleY(1);
+          }
+          
+          .nav-icon {
+            transform: scale(1.05);
+            color: $secondary;
+          }
+          
+          .nav-text {
+            color: $secondary;
+          }
+        }
+        
+        &.active {
+          background: linear-gradient(135deg, 
+            rgba(20, 184, 166, 0.08) 0%, 
+            rgba(20, 184, 166, 0.12) 100%);
+          color: $secondary;
+          font-weight: 600;
+          box-shadow: 0 2px 8px rgba(20, 184, 166, 0.15);
+          transform: translateX(2px);
+          border: 1px solid rgba(20, 184, 166, 0.2);
+          
+          &::before {
+            transform: scaleY(1);
+            background: $secondary;
+          }
+          
+          .nav-icon {
+            color: $secondary;
+            transform: scale(1.05);
+          }
+          
+          .nav-text {
+            color: $secondary;
+          }
+        }
+      }
+    }
+    
+    // Separador visual
+    .nav-divider {
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(226, 232, 240, 0.6) 50%, 
+        transparent 100%);
+      margin: 1rem 1.25rem;
+    }
+    
+    // Sección de logout en el sidebar
+    .nav-logout {
+      margin-top: auto;
+      padding: 1rem 1.25rem;
+      border-top: 1px solid rgba(226, 232, 240, 0.6);
+      background: rgba(248, 250, 252, 0.5);
+      
+      .logout-btn {
+        background: rgba(229, 62, 62, 0.1);
+        border: 1px solid rgba(229, 62, 62, 0.2);
+        color: $danger;
+        border-radius: $border-radius;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        transition: var(--transition-elegant);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        
+        &:hover {
+          background: $danger;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(229, 62, 62, 0.25);
+        }
+      }
+    }
+  }
+}
+
+// ✅ TOPBAR ELEGANTE PARA SUPERVISOR DASHBOARD
+.supervisor-topbar {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  box-shadow: 0 1px 12px rgba(148, 163, 184, 0.08);
+  
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    .menu-toggle {
+      background: rgba(248, 250, 252, 0.9);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      color: $gray-600;
+      border-radius: $border-radius;
+      padding: 0.5rem 0.75rem;
+      transition: var(--transition-elegant);
+      
+      &:hover {
+        background: rgba(20, 184, 166, 0.08);
+        color: $secondary;
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(20, 184, 166, 0.15);
+        border-color: rgba(20, 184, 166, 0.3);
+      }
+    }
+    
+    .topbar-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: $gray-800;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      
+      .title-icon {
+        color: $secondary;
+      }
+      
+      .title-text {
+        background: linear-gradient(135deg, $secondary 0%, $gray-600 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+  }
+  
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    
+    .supervisor-badge {
+      background: linear-gradient(135deg, $secondary 0%, $secondary-700 100%);
+      color: white;
+      border-radius: $border-radius;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(20, 184, 166, 0.2);
+    }
+    
+    .filters-btn {
+      background: rgba(248, 250, 252, 0.9);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      color: $gray-600;
+      border-radius: $border-radius;
+      padding: 0.5rem 0.75rem;
+      transition: var(--transition-elegant);
+      
+      &:hover {
+        background: rgba(20, 184, 166, 0.08);
+        color: $secondary;
+        border-color: rgba(20, 184, 166, 0.3);
+      }
+    }
+  }
+}
+
+// ✅ OFFCANVAS MÓVIL ELEGANTE PARA SUPERVISOR
+.offcanvas-supervisor {
+  .offcanvas-header {
+    background: linear-gradient(135deg, 
+      rgba(20, 184, 166, 0.95) 0%, 
+      rgba(4, 138, 129, 0.98) 100%);
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    .offcanvas-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-close {
+      filter: invert(1);
+      opacity: 0.8;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  
+  .offcanvas-body {
+    padding: 0;
+    background: linear-gradient(180deg, 
+      rgba(248, 250, 252, 0.98) 0%, 
+      rgba(255, 255, 255, 1) 100%);
+  }
+}
+
+// ✅ CARDS ESPECIALES PARA SUPERVISOR MÓVIL
+.supervisor-card-mobile {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: $border-radius-lg;
+  transition: var(--transition-elegant);
+  overflow: hidden;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $secondary, $secondary-600);
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.15);
+    border-color: rgba(20, 184, 166, 0.3);
+  }
+  
+  .card-body {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      transition: var(--transition-elegant);
+    }
+    
+    .card-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: $gray-800;
+      margin: 0;
+      letter-spacing: 0.025em;
+    }
+    
+    .card-description {
+      font-size: 0.8rem;
+      color: $gray-500;
+      margin-top: 0.25rem;
+    }
+  }
+  
+  // Colores específicos por tipo de card
+  &.card-prospectos {
+    .card-icon { color: $primary; }
+    &:hover .card-icon { transform: scale(1.1); }
+  }
+  
+  &.card-metricas {
+    .card-icon { color: $success; }
+    &:hover .card-icon { transform: scale(1.1); }
+  }
+  
+  &.card-vendedores {
+    .card-icon { color: $warning; }
+    &:hover .card-icon { transform: scale(1.1); }
+  }
+  
+  &.card-cotizaciones {
+    .card-icon { color: $info; }
+    &:hover .card-icon { transform: scale(1.1); }
+  }
+}
+
+// ✅ CARDS DE RESUMEN PARA DASHBOARD MÓVIL
+.supervisor-summary-card {
+  background: linear-gradient(135deg, $primary 0%, $primary-600 100%);
+  border: none;
+  border-radius: $border-radius-lg;
+  color: white;
+  transition: var(--transition-elegant);
+  overflow: hidden;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(139, 126, 200, 0.3);
+    
+    &::before {
+      transform: rotate(45deg) translateX(100%);
+    }
+  }
+  
+  &.bg-success {
+    background: linear-gradient(135deg, $success 0%, $success-dark 100%);
+    
+    &:hover {
+      box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+    }
+  }
+  
+  .card-body {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    
+    .card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+    }
+    
+    .card-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    
+    .card-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      font-weight: 500;
+    }
+  }
+}
+
+// ✅ RESPONSIVE MEJORADO PARA SUPERVISOR
+@media (max-width: 768px) {
+  .supervisor-topbar {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    
+    .topbar-title {
+      font-size: 1.25rem;
+      
+      .title-text {
+        display: none; // Ocultar texto largo en móvil
+      }
+    }
+    
+    .supervisor-badge {
+      font-size: 0.75rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+  
+  .sidebar-supervisor {
+    background: rgba(255, 255, 255, 0.98);
+    
+    .nav-item .nav-link {
+      padding: 0.875rem 1rem;
+      
+      .nav-text {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// ✅ ANIMACIONES ESPECIALES PARA SUPERVISOR
+@keyframes supervisor-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 0 10px rgba(20, 184, 166, 0);
+  }
+}
+
+.supervisor-notification {
+  animation: supervisor-pulse 2s infinite;
+}
+
+// ✅ FILTROS ESPECIALES PARA SUPERVISOR
+.supervisor-filters {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: $border-radius-lg;
+  box-shadow: 0 4px 15px rgba(148, 163, 184, 0.1);
+  
+  .filters-header {
+    background: linear-gradient(135deg, 
+      rgba(20, 184, 166, 0.05) 0%, 
+      rgba(20, 184, 166, 0.1) 100%);
+    border-bottom: 1px solid rgba(20, 184, 166, 0.15);
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+    
+    .filters-title {
+      color: $secondary;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+  }
+  
+  .form-control {
+    border: 1px solid rgba(20, 184, 166, 0.15);
+    
+    &:focus {
+      border-color: $secondary;
+      box-shadow: 0 0 0 0.2rem rgba(20, 184, 166, 0.1);
+    }
+  }
+}
+
+// ...existing code...
+
+// ...existing code...
+
+// ...existing code...
+
+// ✅ MÉTRICAS MODERNAS ESTILO GLASS MORPHISM PARA SUPERVISOR
+.supervisor-metrics-modern {
+  .metrics-glass-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+// ✅ CARD MÉTRICA GLASS MORPHISM ULTRA MODERNA
+.metric-glass-card {
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.25) 0%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 8px 32px rgba(31, 38, 135, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  
+  // Efecto de brillo animado
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+      transparent 30%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      transparent 70%);
+    transform: rotate(-45deg);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+  }
+  
+  &:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 
+      0 20px 60px rgba(31, 38, 135, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    
+    &::before {
+      transform: rotate(-45deg) translate(50%, 50%);
+    }
+    
+    .metric-number {
+      transform: scale(1.05);
+    }
+    
+    .metric-icon-container {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+  
+  // Indicador superior con gradiente
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+      $primary 0%, 
+      $secondary 50%, 
+      $accent 100%);
+    border-radius: 24px 24px 0 0;
+  }
+  
+  .metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    
+    .metric-icon-container {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 22px;
+        padding: 2px;
+        background: linear-gradient(135deg, 
+          rgba(255, 255, 255, 0.3) 0%, 
+          rgba(255, 255, 255, 0.1) 100%);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+      }
+      
+      .metric-icon {
+        font-size: 1.75rem;
+        z-index: 1;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+    }
+    
+    .metric-trend {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 0.5rem 0.875rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      
+      &.trend-up {
+        background: linear-gradient(135deg, 
+          rgba(72, 187, 120, 0.2) 0%, 
+          rgba(72, 187, 120, 0.1) 100%);
+        color: $success;
+        border-color: rgba(72, 187, 120, 0.3);
+      }
+      
+      &.trend-down {
+        background: linear-gradient(135deg, 
+          rgba(239, 68, 68, 0.2) 0%, 
+          rgba(239, 68, 68, 0.1) 100%);
+        color: #ef4444;
+        border-color: rgba(239, 68, 68, 0.3);
+      }
+    }
+  }
+  
+  .metric-content {
+    text-align: left;
+    
+    .metric-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, 
+        $gray-800 0%, 
+        $gray-600 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      font-feature-settings: 'tnum';
+      letter-spacing: -0.02em;
+    }
+    
+    .metric-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $gray-700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.025em;
+    }
+    
+    .metric-description {
+      font-size: 0.9rem;
+      color: $gray-500;
+      line-height: 1.4;
+      opacity: 0.8;
+    }
+  }
+  
+  .metric-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    
+    .metric-progress-modern {
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        
+        .progress-label {
+          font-size: 0.85rem;
+          color: $gray-600;
+          font-weight: 500;
+        }
+        
+        .progress-value {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: $gray-700;
+        }
+      }
+      
+      .progress-track {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        
+        .progress-fill {
+          height: 100%;
+          border-radius: 12px;
+          background: linear-gradient(90deg, 
+            $primary 0%, 
+            $secondary 100%);
+          transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          position: relative;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(90deg, 
+              rgba(255, 255, 255, 0.2) 0%, 
+              transparent 50%, 
+              rgba(255, 255, 255, 0.2) 100%);
+            animation: shimmer 2s infinite;
+          }
+        }
+      }
+    }
+  }
+  
+  // Variaciones por tipo de métrica
+  &.metric-primary {
+    .metric-icon-container {
+      background: linear-gradient(135deg, 
+        rgba(139, 126, 200, 0.2) 0%, 
+        rgba(139, 126, 200, 0.1) 100%);
+      
+      .metric-icon {
+        color: $primary;
+      }
+    }
+    
+    .metric-number {
+      background: linear-gradient(135deg, 
+        $primary 0%, 
+        $primary-600 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+  
+  &.metric-success {
+    .metric-icon-container {
+      background: linear-gradient(135deg, 
+        rgba(72, 187, 120, 0.2) 0%, 
+        rgba(72, 187, 120, 0.1) 100%);
+      
+      .metric-icon {
+        color: $success;
+      }
+    }
+    
+    .metric-number {
+      background: linear-gradient(135deg, 
+        $success 0%, 
+        $success-dark 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+  
+  &.metric-warning {
+    .metric-icon-container {
+      background: linear-gradient(135deg, 
+        rgba(237, 137, 54, 0.2) 0%, 
+        rgba(237, 137, 54, 0.1) 100%);
+      
+      .metric-icon {
+        color: $warning;
+      }
+    }
+    
+    .metric-number {
+      background: linear-gradient(135deg, 
+        $warning 0%, 
+        $warning-dark 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+  
+  &.metric-info {
+    .metric-icon-container {
+      background: linear-gradient(135deg, 
+        rgba(155, 149, 179, 0.2) 0%, 
+        rgba(155, 149, 179, 0.1) 100%);
+      
+      .metric-icon {
+        color: $info;
+      }
+    }
+    
+    .metric-number {
+      background: linear-gradient(135deg, 
+        $info 0%, 
+        $info-dark 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+}
+
+// ✅ VERSIÓN MÓVIL COMPACTA
+.metric-glass-card-mobile {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-align: center;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      $primary 0%, 
+      $secondary 100%);
+    border-radius: 0 0 12px 12px;
+  }
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+    
+    .metric-number-mobile {
+      transform: scale(1.05);
+    }
+    
+    .metric-icon-mobile {
+      transform: scale(1.1);
+    }
+  }
+  
+  .metric-icon-mobile {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .metric-number-mobile {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    font-feature-settings: 'tnum';
+  }
+  
+  .metric-label-mobile {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $gray-700;
+    letter-spacing: 0.025em;
+  }
+}
+
+// ✅ ANIMACIONES SOFISTICADAS
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(139, 126, 200, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(139, 126, 200, 0.4);
+  }
+}
+
+.metric-glass-card.metric-highlight {
+  animation: glow 3s ease-in-out infinite;
+}
+
+// ✅ GRID RESPONSIVE MODERNO
+.metrics-glass-grid {
+  // Desktop XL - 5 columnas
+  @media (min-width: 1400px) {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2.5rem;
+  }
+  
+  // Desktop - 4 columnas
+  @media (min-width: 1200px) and (max-width: 1399px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  
+  // Laptop - 3 columnas
+  @media (min-width: 992px) and (max-width: 1199px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  
+  // Tablet - 2 columnas
+  @media (min-width: 768px) and (max-width: 991px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  // Mobile - 1 columna
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+// ✅ MODO OSCURO PARA GLASS MORPHISM
+@media (prefers-color-scheme: dark) {
+  .metric-glass-card {
+    background: linear-gradient(145deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+    
+    .metric-number,
+    .metric-label {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .metric-description {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+
+// ...existing code...
+
+
+// ✅ SWEETALERT2 ESTILO COBER ELEGANTE Y SUTIL
+.swal2-popup {
+  border-radius: $border-radius-xl !important;
+  border: 1px solid $primary-200 !important;
+  box-shadow: $shadow-elegant !important;
+  font-family: 'Lato', sans-serif !important;
+  background: $bg-secondary !important;
+  color: $text-primary !important;
+  padding: 2.25rem 2rem 2rem 2rem !important;
+  max-width: 420px !important;
+}
+
+.swal2-title {
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 700 !important;
+  color: $primary-800 !important;
+  font-size: 1.35rem !important;
+  margin-bottom: 1rem !important;
+  letter-spacing: -0.01em !important;
+}
+
+.swal2-html-container {
+  font-family: 'Lato', sans-serif !important;
+  color: $gray-700 !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.swal2-icon {
+  margin-top: 0 !important;
+  margin-bottom: 1.25rem !important;
+  transform: scale(0.95);
+  box-shadow: none !important;
+}
+
+.swal2-success {
+  .swal2-success-ring {
+    border-color: $success-light !important;
+  }
+  [class^='swal2-success-line'] {
+    background-color: $success !important;
+  }
+}
+
+.swal2-error {
+  .swal2-x-mark-line-left,
+  .swal2-x-mark-line-right {
+    background-color: $danger !important;
+  }
+}
+
+.swal2-warning {
+  color: $warning !important;
+}
+
+.swal2-info {
+  color: $info !important;
+}
+
+.swal2-actions {
+  margin-top: 2rem !important;
+  gap: 0.75rem !important;
+  justify-content: flex-end !important;
+}
+
+.swal2-confirm {
+  background: $gradient-primary !important;
+  border: none !important;
+  border-radius: $border-radius !important;
+  color: white !important;
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  padding: 0.75rem 2rem !important;
+  box-shadow: $shadow-primary !important;
+  transition: var(--transition-elegant) !important;
+  &:hover {
+    background: $primary-700 !important;
+    color: white !important;
+  }
+}
+
+.swal2-cancel {
+  background: $gray-100 !important;
+  border: 1px solid $gray-300 !important;
+  color: $gray-700 !important;
+  border-radius: $border-radius !important;
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  padding: 0.75rem 2rem !important;
+  transition: var(--transition-elegant) !important;
+  &:hover {
+    background: $gray-200 !important;
+    color: $primary !important;
+    border-color: $primary-200 !important;
+  }
+}
+
+.swal2-timer-progress-bar {
+  background: $primary-400 !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+}
+
+.swal2-input,
+.swal2-textarea {
+  border: 1.5px solid $primary-200 !important;
+  border-radius: $border-radius !important;
+  font-family: 'Lato', sans-serif !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  background: $gray-50 !important;
+  color: $text-primary !important;
+  transition: var(--transition-elegant) !important;
+  &:focus {
+    border-color: $primary !important;
+    box-shadow: 0 0 0 0.2rem rgba(139, 126, 200, 0.12) !important;
+    outline: none !important;
+  }
+}
+
+.swal2-container {
+  background: rgba(139, 126, 200, 0.08) !important;
+  backdrop-filter: blur(2px) !important;
+}
+
+// Responsive
+@media (max-width: 600px) {
+  .swal2-popup {
+    padding: 1.25rem 0.5rem 1.5rem 0.5rem !important;
+    max-width: 98vw !important;
+  }
+  .swal2-title {
+    font-size: 1.1rem !important;
+  }
+  .swal2-html-container {
+    font-size: 0.95rem !important;
+  }
+  .swal2-confirm, .swal2-cancel {
+    font-size: 0.95rem !important;
+    padding: 0.65rem 1.25rem !important;
+  }
+}
+
+// ===============================================
+// 🎯 DASHBOARD SUPERVISOR - MEJORAS RESPONSIVAS
+// ===============================================
+
+// 📱 Estilos específicos para el dashboard supervisor
+.supervisor-dashboard {
+  // Desktop layout
+  @media (min-width: 992px) {
+    .sidebar-wrapper {
+      width: 280px;
+      position: fixed;
+      height: 100vh;
+      z-index: 1030;
+    }
+    
+    .content-wrapper {
+      margin-left: 280px;
+      min-height: 100vh;
+    }
+  }
+  
+  // Tablet layout
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .sidebar-wrapper {
+      width: 260px;
+    }
+    
+    .content-wrapper {
+      margin-left: 260px;
+    }
+    
+    .supervisor-topbar {
+      padding: 0.75rem 1rem;
+      
+      .topbar-title .title-text {
+        font-size: 1.1rem;
+      }
+    }
+  }
+  
+  // Mobile layout
+  @media (max-width: 767.98px) {
+    .content-wrapper {
+      margin-left: 0;
+    }
+    
+    .supervisor-topbar {
+      padding: 0.5rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+      
+      .topbar-title .title-text {
+        font-size: 1rem;
+        display: none;
+      }
+      
+      .topbar-title .title-icon {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+// 📊 Cards de estadísticas responsivas
+.supervisor-summary-card {
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  
+  .card-body {
+    padding: 1.25rem;
+    text-align: center;
+    
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      color: white;
+      opacity: 0.9;
+    }
+    
+    .card-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.25rem;
+    }
+    
+    .card-label {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+    }
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  }
+  
+  // Responsive card sizing
+  @media (max-width: 575.98px) {
+    .card-body {
+      padding: 1rem;
+      
+      .card-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .card-value {
+        font-size: 1.5rem;
+      }
+      
+      .card-label {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+// 🃏 Cards de navegación móvil
+.supervisor-card-mobile {
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  
+  .card-body {
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--bs-primary);
+    }
+    
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--bs-dark);
+    }
+    
+    .card-description {
+      font-size: 0.875rem;
+      color: var(--bs-text-muted);
+      margin-bottom: 0.75rem;
+    }
+  }
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  // Color variations
+  &.card-dashboard .card-icon { color: var(--bs-primary); }
+  &.card-prospectos .card-icon { color: var(--bs-success); }
+  &.card-vendedores .card-icon { color: var(--bs-warning); }
+  &.card-polizas .card-icon { color: var(--bs-danger); }
+  
+  // Responsive sizing
+  @media (max-width: 575.98px) {
+    .card-body {
+      padding: 1.25rem 1rem;
+      
+      .card-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+      }
+      
+      .card-title {
+        font-size: 0.95rem;
+      }
+      
+      .card-description {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+// 📋 Topbar supervisor responsivo
+.supervisor-topbar {
+  background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 2px 12px rgba(148, 163, 184, 0.08);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    .menu-toggle {
+      background: rgba(139, 126, 200, 0.1);
+      border: 1px solid rgba(139, 126, 200, 0.2);
+      color: var(--bs-primary);
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: rgba(139, 126, 200, 0.2);
+        transform: scale(1.05);
+      }
+    }
+    
+    .topbar-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      
+      .title-icon {
+        color: var(--bs-primary);
+        font-size: 1.25rem;
+      }
+      
+      .title-text {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--bs-dark);
+        margin: 0;
+      }
+    }
+  }
+  
+  .topbar-right {
+    .supervisor-badge {
+      background: linear-gradient(135deg, var(--bs-primary) 0%, #9333ea 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(139, 126, 200, 0.3);
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 767.98px) {
+    padding: 0.75rem 1rem;
+    
+    .topbar-left {
+      gap: 0.75rem;
+      
+      .topbar-title {
+        gap: 0.5rem;
+        
+        .title-icon {
+          font-size: 1.1rem;
+        }
+        
+        .title-text {
+          font-size: 1.1rem;
+        }
+      }
+    }
+    
+    .topbar-right {
+      .supervisor-badge {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+        
+        .me-1 {
+          display: none;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    padding: 0.5rem 0.75rem;
+    
+    .topbar-left {
+      .topbar-title .title-text {
+        display: none;
+      }
+    }
+    
+    .topbar-right {
+      .supervisor-badge {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.75rem;
+        border-radius: 15px;
+      }
+    }
+  }
+}
+
+// 🔍 Filtros responsivos
+.supervisor-filters {
+  border: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  
+  .filters-header {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    padding: 1rem 1.25rem;
+    
+    .filters-title {
+      color: var(--bs-dark);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  // Responsive filter layout
+  @media (max-width: 767.98px) {
+    .filters-header {
+      padding: 0.75rem 1rem;
+      
+      .filters-title {
+        font-size: 0.95rem;
+      }
+    }
+    
+    .card-body {
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .filters-header {
+      padding: 0.5rem 0.75rem;
+    }
+    
+    .card-body {
+      padding: 0.75rem;
+    }
+  }
+}
+
+// 📱 Modal responsivo mejorado
+.modal {
+  @media (max-width: 575.98px) {
+    .modal-dialog {
+      margin: 0.5rem;
+      max-width: calc(100% - 1rem);
+    }
+    
+    .modal-header {
+      padding: 1rem 0.75rem;
+      
+      .modal-title {
+        font-size: 1rem;
+      }
+    }
+    
+    .modal-body {
+      padding: 0.75rem;
+      
+      .card {
+        margin-bottom: 0.75rem;
+        
+        .card-body {
+          padding: 0.75rem;
+        }
+      }
+      
+      .table {
+        font-size: 0.875rem;
+        
+        th, td {
+          padding: 0.5rem 0.25rem;
+        }
+      }
+    }
+    
+    .modal-footer {
+      padding: 0.75rem;
+      
+      .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+// 📊 Tabla responsiva mejorada
+.table-responsive {
+  @media (max-width: 991.98px) {
+    .table {
+      font-size: 0.9rem;
+      
+      th, td {
+        padding: 0.75rem 0.5rem;
+      }
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .table {
+      font-size: 0.85rem;
+      
+      th, td {
+        padding: 0.5rem 0.25rem;
+        
+        &:nth-child(n+5) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// 🎨 Mejoras generales de spacing
+.container-fluid {
+  @media (max-width: 767.98px) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  @media (max-width: 575.98px) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+// ===============================================
+// 🎯 BOTONES DE ACCIÓN PROFESIONALES - USUARIOS ADMIN
+// ===============================================
+
+// ✅ Botones de acción con estilo consistente y profesional
+.btn-outline-secondary.border-0 {
+  background: rgba(108, 117, 125, 0.08);
+  color: $gray-600;
+  transition: var(--transition-elegant);
+  border-radius: $border-radius;
+  
+  &:hover {
+    background: rgba(108, 117, 125, 0.15);
+    color: $gray-700;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.15);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+  }
+  
+  // Botón de eliminación con estado danger
+  &.text-danger {
+    color: $danger !important;
+    
+    &:hover {
+      background: rgba(220, 53, 69, 0.1);
+      color: darken($danger, 10%) !important;
+      box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+  }
+}
+
+.btn-outline-primary.border-0 {
+  background: rgba(139, 126, 200, 0.08);
+  color: $primary;
+  transition: var(--transition-elegant);
+  border-radius: $border-radius;
+  
+  &:hover {
+    background: rgba(139, 126, 200, 0.15);
+    color: $primary-700;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(139, 126, 200, 0.2);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(139, 126, 200, 0.25);
+  }
+}
+
+// ✅ Mejoras específicas para acciones en tarjetas
+.card-footer {
+  .btn-outline-primary.border-0,
+  .btn-outline-secondary.border-0 {
+    min-width: 36px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+  
+  // Botón principal en tarjetas (Ver Detalles)
+  .btn-outline-primary.border-0 {
+    padding: 0.5rem 1rem;
+    min-width: auto;
+    font-size: 0.875rem;
+  }
+}
+
+// ✅ Mejoras para tabla de usuarios - acciones consistentes
+.table {
+  .btn-outline-primary.border-0,
+  .btn-outline-secondary.border-0 {
+    min-width: 32px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+  }
+}
+
+// ✅ Responsive para botones de acción
+@media (max-width: 576px) {
+  .card-footer {
+    .d-flex.justify-content-between {
+      flex-direction: column;
+      gap: 0.75rem !important;
+      align-items: stretch !important;
+      
+      .btn-outline-primary.border-0 {
+        order: -1;
+        width: 100%;
+        justify-content: center;
+        padding: 0.625rem 1rem;
+      }
+      
+      .d-flex {
+        flex-direction: row !important;
+        justify-content: center;
+        gap: 0.5rem !important;
+        
+        .btn {
+          flex: 1;
+          max-width: 48px;
+        }
+      }
+    }
+  }
+}
+
+// ✅ Mejoras para tabla responsive en móviles
+@media (max-width: 480px) {
+  .table-responsive {
+    .d-flex.justify-content-center {
+      flex-wrap: wrap;
+      gap: 0.25rem !important;
+      
+      .btn {
+        min-width: 30px;
+        height: 28px;
+        padding: 0.25rem;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+// ===============================================
+// 🎯 BADGES OUTLINE PERSONALIZADOS - USUARIOS ADMIN
+// ===============================================
+
+// ✅ Badges outline con borde y texto en color, fondo blanco
+.badge-outline-primary {
+  background-color: white !important;
+  color: var(--bs-primary) !important;
+  border: 2px solid var(--bs-primary) !important;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.35em 0.75em;
+  border-radius: 0.5rem;
+}
+
+.badge-outline-success {
+  background-color: white !important;
+  color: var(--bs-success) !important;
+  border: 2px solid var(--bs-success) !important;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.35em 0.75em;
+  border-radius: 0.5rem;
+}
+
+.badge-outline-danger {
+  background-color: white !important;
+  color: var(--bs-danger) !important;
+  border: 2px solid var(--bs-danger) !important;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.35em 0.75em;
+  border-radius: 0.5rem;
+}
+
+.badge-outline-info {
+  background-color: white !important;
+  color: var(--bs-info) !important;
+  border: 2px solid var(--bs-info) !important;
+  font-weight: 600;
+  font-size: 0.75rem;  
+  padding: 0.35em 0.75em;
+  border-radius: 0.5rem;
+}
+
+.badge-outline-secondary {
+  background-color: white !important;
+  color: var(--bs-secondary) !important;
+  border: 2px solid var(--bs-secondary) !important;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.35em 0.75em;
+  border-radius: 0.5rem;
+}
+
+.badge-outline-warning {
+  background-color: white !important;
+  color: var(--bs-warning) !important;
+  border: 2px solid var(--bs-warning) !important;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.35em 0.75em;
+  border-radius: 0.5rem;
+}
+
+// ===============================================
+// 🎯 MÉTRICAS ACTIVE USERS MONITOR - ESTILO OUTLINE
+// ===============================================
+
+// ✅ Métricas con borde en color y fondo blanco
+.border-success {
+  border-color: var(--bs-success) !important;
+}
+
+.border-info {
+  border-color: var(--bs-info) !important;
+}
+
+.border-warning {
+  border-color: var(--bs-warning) !important;
+}
+
+.border-secondary {
+  border-color: var(--bs-secondary) !important;
+}
+
+.border-2 {
+  border-width: 2px !important;
+}
+
+// ✅ Texto en color para métricas
+.text-success {
+  color: var(--bs-success) !important;
+}
+
+.text-info {
+  color: var(--bs-info) !important;
+}
+
+.text-warning {
+  color: var(--bs-warning) !important;
+}
+
+.text-secondary {
+  color: var(--bs-secondary) !important;
+}
+
+// ✅ Sombras suaves para las métricas
+.metric-card-outline {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+}
+
+// ===============================================
+// 🎯 LOADING CARD MEJORADA - ACTIVE USERS MONITOR
+// ===============================================
+
+// ✅ Card de loading con mejor contraste y legibilidad
+.loading-card-improved {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+  border: 1px solid rgba(139, 126, 200, 0.2) !important;
+  box-shadow: 0 8px 25px rgba(139, 126, 200, 0.15) !important;
+  
+  .card-body {
+    background: transparent !important;
+  }
+  
+  .text-primary {
+    color: var(--color-primary-700) !important;
+  }
+  
+  .text-muted {
+    color: var(--color-gray-600) !important;
+  }
+  
+  // Animación suave para el spinner
+  .spinner-border {
+    border-color: var(--color-primary-300) !important;
+    border-right-color: var(--color-primary) !important;
+    animation: spinner-grow 1.5s linear infinite;
+  }
+  
+  // Animación del corazón
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+}
+
+// ✅ Mejoras para el texto de loading
+.loading-text-improved {
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+// ✅ Efecto resplandor para elementos de estado
+.glow-effect {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(139, 126, 200, 0.4);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(139, 126, 200, 0.6), 0 0 30px rgba(139, 126, 200, 0.4);
+  }
+}
+
+// ✅ Animación para la barra de progreso de loading
+@keyframes progress-loading {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0.6;
+  }
+}
+
+// ✅ Mejoras para el progress bar con colores dinámicos
+.progress {
+  overflow: hidden;
+  border-radius: 10px !important;
+  
+  // Colores de progreso basados en porcentaje de evolución
+  .progress-bar {
+    border-radius: 10px !important;
+    transition: all 0.6s ease;
+    
+    // Colores por defecto (purple original)
+    &.bg-purple {
+      background: linear-gradient(90deg, #6a5acd, #8470ff) !important;
+    }
+    
+    // 0-20% - Rojo (Inicio/Crítico)
+    &.bg-danger-gradient {
+      background: linear-gradient(90deg, #ff4757, #ff3838) !important;
+    }
+    
+    // 21-40% - Naranja (Bajo progreso)
+    &.bg-warning-gradient {
+      background: linear-gradient(90deg, #ff9f43, #ff8c00) !important;
+    }
+    
+    // 41-60% - Amarillo (Progreso medio)
+    &.bg-yellow-gradient {
+      background: linear-gradient(90deg, #feca57, #ff9f43) !important;
+    }
+    
+    // 61-80% - Verde claro (Buen progreso)
+    &.bg-success-light-gradient {
+      background: linear-gradient(90deg, #5f27cd, #00d2d3) !important;
+    }
+    
+    // 81-99% - Verde (Casi completo)
+    &.bg-success-gradient {
+      background: linear-gradient(90deg, #00d2d3, #01a3a4) !important;
+    }
+    
+    // 100% - Verde brillante (Completado)
+    &.bg-complete-gradient {
+      background: linear-gradient(90deg, #2ed573, #2ed573) !important;
+      animation: success-glow 2s ease-in-out infinite alternate;
+    }
+  }
+}
+
+// Animación para progreso completado
+@keyframes success-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(46, 213, 115, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(46, 213, 115, 0.6);
+  }
+}

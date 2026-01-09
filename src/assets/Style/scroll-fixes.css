@@ -1,0 +1,103 @@
+/* Correcciones globales para prevenir problemas de scroll */
+
+/* Prevenir que las animaciones afecten el layout del documento */
+html, body {
+  overflow-x: hidden !important;
+  scroll-behavior: smooth;
+}
+
+/* Estabilizar elementos con position fixed */
+.modern-navbar {
+  transform: translateZ(0); /* Crear capa de composición separada */
+  will-change: auto;
+}
+
+/* Desactivar animaciones problemáticas en hover para elementos críticos */
+.btn:hover,
+.action-btn:hover,
+.nav-link:hover,
+.dropdown-item:hover {
+  /* Solo cambios visuales que no afecten el layout */
+  transform: none !important;
+}
+
+/* Optimizar notificaciones para no afectar scroll */
+.notification-badge,
+.new-message-indicator {
+  will-change: opacity;
+  /* Evitar cambios de transform que afecten el layout */
+}
+
+/* Estabilizar dropdowns */
+.dropdown-menu {
+  will-change: opacity, visibility;
+  /* Prevenir cambios de layout durante animaciones */
+}
+
+/* Prevenir overflow en contenedores principales */
+.main-content,
+.dashboard-content,
+.whatsapp-vista-container {
+  overflow-x: hidden;
+}
+
+/* Asegurar que las animaciones CSS no causen reflow */
+@media (prefers-reduced-motion: no-preference) {
+  .animate__animated,
+  .animate__pulse {
+    /* Usar solo animaciones que no afecten el layout */
+    animation-fill-mode: both;
+    will-change: opacity, transform;
+  }
+}
+
+/* Para usuarios que prefieren movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .animate__animated,
+  .animate__pulse,
+  .new-message-indicator {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Prevenir problemas de scroll en modals */
+.modal-open {
+  overflow: hidden !important;
+}
+
+.modal-backdrop {
+  will-change: opacity;
+}
+
+/* Optimizar el WhatsApp Chat para no afectar el scroll principal */
+.whatsapp-modal .modal-content {
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Crear capa de composición separada */
+}
+
+/* Estabilizar el autoscroll del chat */
+.chat-mensajes {
+  scroll-behavior: smooth;
+  will-change: scroll-position;
+}
+
+/* Prevenir problemas con las tarjetas flotantes */
+.card:hover {
+  /* Solo usar box-shadow, evitar transform */
+  transform: none !important;
+}
+
+/* Estabilizar la barra de navegación */
+body.has-navbar {
+  /* Asegurar padding consistente */
+  transition: padding-top 0s !important; /* Sin transición para evitar parpadeo */
+}
+
+/* Desactivar transforms problemáticos en elementos de interfaz */
+.list-group-item:hover,
+.table-row:hover,
+.prospecto-card:hover {
+  /* Solo cambios visuales, no de posición */
+  transform: none !important;
+}

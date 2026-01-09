@@ -1,0 +1,571 @@
+/* 💬 WhatsApp Vista - Diseño Minimalista */
+
+/* Variables de color */
+:root {
+  --primary-purple: #9c479a;
+  --light-purple: #e8d4e7;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-600: #6c757d;
+  --white: #ffffff;
+}
+
+/* Container principal */
+.whatsapp-vista-container {
+  height: 100vh; /* Ocupar toda la pantalla */
+  overflow: hidden;
+  background: var(--white);
+  position: relative;
+  z-index: 1; /* Bajo para permitir que el offcanvas aparezca encima */
+}
+
+.whatsapp-vista {
+  height: 100%;
+  background: var(--gray-100);
+}
+
+.whatsapp-vista .card {
+  border: none;
+  border-radius: 0;
+  height: 100%;
+  box-shadow: none;
+}
+
+.whatsapp-vista .card-header {
+  background: var(--primary-purple);
+  color: var(--white);
+  border-radius: 0;
+  border-bottom: none;
+  padding: 0.5rem 0.75rem; /* Padding reducido para ahorrar espacio */
+  min-height: 50px; /* Altura mínima compacta */
+}
+
+/* 🆕 DESKTOP: Pegar header a la parte superior cuando navbar no está visible */
+@media (min-width: 769px) {
+  .whatsapp-vista-container {
+    position: fixed;
+    top: 0;
+    left: 250px; /* Espacio para el sidebar */
+    right: 0;
+    bottom: 0;
+    width: calc(100vw - 250px); /* Restar el ancho del sidebar */
+    height: 100vh;
+    z-index: 1;
+  }
+
+  .whatsapp-vista .card-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+.whatsapp-vista .card-body {
+  padding: 0;
+  height: calc(100vh - 50px); /* Solo header compacto (50px) */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Avatar simple */
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--light-purple);
+  color: var(--primary-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Lista de conversaciones */
+.whatsapp-vista .list-group-item {
+  border-left: none;
+  border-right: none;
+  border-color: var(--gray-200);
+  background: var(--white);
+  transition: background-color 0.2s ease;
+  padding: 1rem;
+}
+
+.whatsapp-vista .list-group-item:hover {
+  background-color: var(--gray-100);
+}
+
+.whatsapp-vista .list-group-item.active {
+  background-color: var(--light-purple);
+  border-color: var(--gray-200);
+}
+
+/* Burbujas de mensaje */
+.message-bubble {
+  position: relative;
+  word-wrap: break-word;
+  max-width: 70%;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+/* Burbuja del vendedor (derecha) */
+.justify-content-end .message-bubble {
+  background-color: var(--primary-purple);
+  color: var(--white);
+}
+
+/* Burbuja del cliente (izquierda) */
+.justify-content-start .message-bubble {
+  background-color: var(--white);
+  color: #212529;
+  border: 1px solid var(--gray-200);
+}
+
+/* Área de chat - Desktop */
+.chat-messages {
+  background-color: var(--gray-100);
+  padding: 1rem;
+  overflow-y: auto;
+  height: calc(100vh - 170px); /* header compacto (50px) + input (120px) */
+  max-height: calc(100vh - 170px);
+}
+
+/* Input de mensaje */
+.chat-input {
+  background: var(--white);
+  border-top: 1px solid var(--gray-300);
+  padding: 1rem;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+/* ✅ NUEVO: Alineación perfecta del InputGroup */
+.chat-input .input-group {
+  display: flex;
+  align-items: stretch; /* Todos los elementos con la misma altura */
+  gap: 0.5rem;
+}
+
+.chat-input .input-group .form-control {
+  border-radius: 20px;
+  border: 1px solid var(--gray-300);
+  padding: 0.5rem 1rem;
+  flex: 1; /* El input ocupa el espacio disponible */
+  height: 40px; /* Altura fija para alineación */
+  display: flex;
+  align-items: center;
+}
+
+.chat-input .input-group .form-control:focus {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 0.2rem rgba(156, 71, 154, 0.15);
+}
+
+/* Botón de adjuntar archivo - alineado */
+.chat-input .input-group .btn-outline-secondary {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: var(--gray-300);
+  color: var(--gray-600);
+  flex-shrink: 0; /* No se reduce */
+}
+
+.chat-input .input-group .btn-outline-secondary:hover {
+  background-color: var(--gray-100);
+  border-color: var(--primary-purple);
+  color: var(--primary-purple);
+}
+
+/* Botón de enviar - alineado */
+.chat-input .btn-primary {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  background-color: var(--primary-purple);
+  border-color: var(--primary-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* No se reduce */
+}
+
+.chat-input .btn-primary:hover {
+  background-color: #8a3f88;
+  border-color: #8a3f88;
+}
+
+.chat-input .btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Badges minimalistas */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+}
+
+.badge-primary {
+  background-color: var(--primary-purple);
+}
+
+.badge-danger {
+  background-color: #dc3545;
+}
+
+/* Estadísticas simples */
+.unread-badge {
+  background-color: var(--primary-purple);
+  color: var(--white);
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Responsive - Mobile full screen */
+@media (max-width: 768px) {
+  .whatsapp-vista-container {
+    position: fixed;
+    top: 0; /* Ocupar desde arriba sin navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height - se ajusta con el teclado */
+    width: 100vw;
+    z-index: 1 !important; /* Bajo para que el offcanvas (z-index: 1050) aparezca encima */
+    background: var(--white);
+    overflow: hidden;
+  }
+
+  .whatsapp-vista .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  .whatsapp-vista .card-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  /* Ajustar altura del card-body con header compacto */
+  .whatsapp-vista .card-body {
+    height: calc(100vh - 50px); /* Solo header compacto (50px) */
+  }
+  
+  /* Header más compacto en mobile */
+  .whatsapp-vista .card-header {
+    padding: 0.4rem 0.6rem;
+    min-height: 45px;
+  }
+  
+  .message-bubble {
+    max-width: 85%;
+    font-size: 14px;
+  }
+  
+  .chat-input {
+    padding: 0.75rem;
+    position: sticky;
+    bottom: 0;
+    flex-shrink: 0;
+    background: var(--white);
+  }
+  
+  .avatar-circle {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  
+  .list-group-item {
+    padding: 0.75rem;
+  }
+
+  .chat-messages {
+    flex: 1;
+    height: auto;
+    max-height: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 576px) {
+  .whatsapp-vista .card-header {
+    padding: 0.4rem 0.5rem; /* Más compacto aún */
+    min-height: 45px;
+  }
+  
+  /* Botones más pequeños en móvil */
+  .whatsapp-vista .card-header .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .message-bubble {
+    max-width: 90%;
+    padding: 0.5rem 0.75rem;
+    font-size: 13px;
+  }
+}
+
+/* Scrollbar personalizada */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: var(--gray-200);
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: var(--gray-600);
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-purple);
+}
+
+/* Buscador */
+.search-input {
+  border-radius: 20px;
+  border: 1px solid var(--gray-300);
+  transition: border-color 0.2s ease;
+  padding: 0.5rem 1rem;
+}
+
+.search-input:focus {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 0.2rem rgba(156, 71, 154, 0.15);
+}
+
+/* Botones simples */
+.btn-outline-secondary {
+  border-color: var(--gray-300);
+  color: var(--gray-600);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--gray-100);
+  border-color: var(--gray-300);
+  color: var(--gray-600);
+}
+
+/* Estados de mensaje */
+.message-status {
+  opacity: 0.7;
+  font-size: 0.75rem;
+}
+
+/* Loading spinner */
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Preview de archivo adjunto */
+.archivo-preview {
+  background-color: var(--light-purple);
+  border: 1px solid var(--gray-300);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos para archivos en mensajes */
+.message-bubble img {
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.message-bubble img:hover {
+  transform: scale(1.05);
+}
+
+.message-bubble a {
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.message-bubble a:hover {
+  opacity: 0.8;
+}
+
+/* ❌ OCULTAR TODO cuando WhatsApp está abierto - INCLUYENDO EL NAVBAR */
+.whatsapp-vista-container ~ .sc-bRKDuR,
+.whatsapp-vista-container ~ [class*="koArUV"],
+body:has(.whatsapp-vista-container) .sc-bRKDuR,
+body:has(.whatsapp-vista-container) [class*="koArUV"],
+body:has(.whatsapp-vista-container) .sc-hvigdm,
+body:has(.whatsapp-vista-container) [class*="iOWnxN"],
+body:has(.whatsapp-vista-container) nav,
+body:has(.whatsapp-vista-container) [role="navigation"],
+body:has(.whatsapp-vista-container) .navbar,
+body:has(.whatsapp-vista-container) header.navbar {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* 🍔 Botón Hamburguesa - Mejorado y más visible en mobile */
+.sidebar-toggle-btn {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 6px !important; /* Pequeño border-radius para suavizar */
+  color: var(--primary-purple) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.2s ease !important;
+  font-weight: bold !important;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10000 !important; /* Z-index muy alto para estar sobre todo */
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto !important; /* Asegurar que sea clickeable */
+  touch-action: manipulation !important; /* Evitar delays en móvil */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sidebar-toggle-btn:hover,
+.sidebar-toggle-btn:active,
+.sidebar-toggle-btn:focus,
+.sidebar-toggle-btn:focus-visible {
+  background-color: var(--white) !important;
+  border-color: var(--white) !important;
+  color: var(--primary-purple) !important;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(156, 71, 154, 0.3) !important;
+  outline: none !important;
+}
+
+/* Efecto al hacer click - más pronunciado */
+.sidebar-toggle-btn:active {
+  transform: scale(0.95) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+  background-color: rgba(255, 255, 255, 1) !important;
+}
+
+.sidebar-toggle-btn svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  pointer-events: none; /* Evitar que el SVG capture el click */
+}
+
+/* Animación de pulso para llamar la atención (opcional) */
+@keyframes pulse-sidebar {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 2px 12px rgba(156, 71, 154, 0.4);
+  }
+}
+
+.sidebar-toggle-btn:not(:hover):not(:active) {
+  animation: pulse-sidebar 2s ease-in-out infinite;
+}
+
+/* Asegurar que el botón sea visible en el header morado */
+.whatsapp-vista .card-header .sidebar-toggle-btn {
+  background-color: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Asegurar que el header no bloquee el click */
+.whatsapp-vista .card-header {
+  position: relative;
+  z-index: 1000;
+}
+
+.whatsapp-vista .card-header > div {
+  position: relative;
+  z-index: 1001;
+}
+
+/* 🔙 Botón de Volver - Mejorar visibilidad en header morado */
+.whatsapp-vista .card-header .btn-outline-light {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  border-radius: 6px !important;
+  color: var(--primary-purple) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+  transition: all 0.2s ease !important;
+  backdrop-filter: blur(10px);
+}
+
+.whatsapp-vista .card-header .btn-outline-light:hover,
+.whatsapp-vista .card-header .btn-outline-light:active {
+  background-color: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(255, 255, 255, 1) !important;
+  color: var(--primary-purple) !important;
+  transform: scale(1.05);
+  box-shadow: 0 3px 10px rgba(156, 71, 154, 0.3) !important;
+}
+
+.whatsapp-vista .card-header .btn-outline-light svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Aumentar área de click en mobile */
+@media (max-width: 768px) {
+  .sidebar-toggle-btn {
+    min-width: 50px !important;
+    min-height: 50px !important;
+    padding: 0.75rem !important;
+    font-size: 1.4rem !important;
+    touch-action: manipulation !important; /* Mejora la respuesta táctil */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Aumentar el área táctil con pseudo-elemento */
+  .sidebar-toggle-btn::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+  }
+}
+

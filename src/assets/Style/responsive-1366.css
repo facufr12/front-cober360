@@ -1,0 +1,260 @@
+/* Estilos optimizados para resolución 1366x768px */
+
+@media (max-width: 1366px) and (max-height: 768px) {
+  /* Optimización general del contenedor */
+  .container-fluid {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    max-width: 1366px;
+    margin: 0 auto;
+  }
+
+  /* Optimización de la tabla de prospectos */
+  .table-compact {
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .table-compact td {
+    padding: 0.4rem 0.6rem !important;
+    vertical-align: middle !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 0; /* Permite que text-overflow funcione */
+  }
+
+  .table-compact th {
+    padding: 0.5rem 0.6rem !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    position: sticky;
+    top: 0;
+    background: #f8f9fa !important;
+    z-index: 10;
+  }
+
+  /* Anchos específicos de columnas para ProspectosAdmin (7 columnas) */
+  .prospectos-admin-responsive .table-compact th:nth-child(1),
+  .prospectos-admin-responsive .table-compact td:nth-child(1) { 
+    width: 18% !important; 
+    min-width: 180px;
+  }
+
+  .prospectos-admin-responsive .table-compact th:nth-child(2),
+  .prospectos-admin-responsive .table-compact td:nth-child(2) { 
+    width: 15% !important; 
+    min-width: 150px;
+  }
+
+  .prospectos-admin-responsive .table-compact th:nth-child(3),
+  .prospectos-admin-responsive .table-compact td:nth-child(3) { 
+    width: 20% !important; 
+    min-width: 200px;
+  }
+
+  .prospectos-admin-responsive .table-compact th:nth-child(4),
+  .prospectos-admin-responsive .table-compact td:nth-child(4) { 
+    width: 12% !important; 
+    min-width: 120px;
+  }
+
+  .prospectos-admin-responsive .table-compact th:nth-child(5),
+  .prospectos-admin-responsive .table-compact td:nth-child(5) { 
+    width: 8% !important; 
+    min-width: 80px;
+  }
+
+  .prospectos-admin-responsive .table-compact th:nth-child(6),
+  .prospectos-admin-responsive .table-compact td:nth-child(6) { 
+    width: 12% !important; 
+    min-width: 120px;
+  }
+
+  .prospectos-admin-responsive .table-compact th:nth-child(7),
+  .prospectos-admin-responsive .table-compact td:nth-child(7) { 
+    width: 15% !important; 
+    min-width: 160px;
+  }
+
+  /* Anchos específicos de columnas para UsuariosAdmin (8 columnas) */
+  .usuarios-admin-responsive .table-compact th:nth-child(1),
+  .usuarios-admin-responsive .table-compact td:nth-child(1) { 
+    width: 6% !important; 
+    min-width: 60px;
+  }
+
+  .usuarios-admin-responsive .table-compact th:nth-child(2),
+  .usuarios-admin-responsive .table-compact td:nth-child(2) { 
+    width: 14% !important; 
+    min-width: 120px;
+  }
+
+  .usuarios-admin-responsive .table-compact th:nth-child(3),
+  .usuarios-admin-responsive .table-compact td:nth-child(3) { 
+    width: 14% !important; 
+    min-width: 120px;
+  }
+
+  .usuarios-admin-responsive .table-compact th:nth-child(4),
+  .usuarios-admin-responsive .table-compact td:nth-child(4) { 
+    width: 22% !important; 
+    min-width: 200px;
+  }
+
+  .usuarios-admin-responsive .table-compact th:nth-child(5),
+  .usuarios-admin-responsive .table-compact td:nth-child(5) { 
+    width: 12% !important; 
+    min-width: 100px;
+  }
+
+  .usuarios-admin-responsive .table-compact th:nth-child(6),
+  .usuarios-admin-responsive .table-compact td:nth-child(6) { 
+    width: 10% !important; 
+    min-width: 90px;
+  }
+
+  .usuarios-admin-responsive .table-compact th:nth-child(7),
+  .usuarios-admin-responsive .table-compact td:nth-child(7) { 
+    width: 8% !important; 
+    min-width: 80px;
+  }
+
+  .usuarios-admin-responsive .table-compact th:nth-child(8),
+  .usuarios-admin-responsive .table-compact td:nth-child(8) { 
+    width: 14% !important; 
+    min-width: 140px;
+  }
+
+  /* Optimización de badges */
+  .badge-compact {
+    padding: 0.2rem 0.4rem !important;
+    font-size: 0.65rem !important;
+    line-height: 1 !important;
+  }
+
+  /* Optimización de botones de acciones */
+  .btn-group-compact .btn {
+    padding: 0.2rem 0.3rem !important;
+    font-size: 0.7rem !important;
+    margin: 0.1rem !important;
+    border-radius: 0.2rem !important;
+  }
+
+  /* Contenedor de tabla con scroll vertical */
+  .table-responsive {
+    max-height: 65vh !important;
+    overflow-y: auto !important;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+  }
+
+  /* Optimización de cards */
+  .card-compact {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .card-compact .card-body {
+    padding: 0.75rem !important;
+  }
+
+  .card-compact .card-header {
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  /* Optimización de filtros */
+  .form-control-sm,
+  .form-select-sm {
+    font-size: 0.8rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  .form-label {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.25rem !important;
+    font-weight: 500 !important;
+  }
+
+  /* Optimización de modales para pantallas pequeñas */
+  .modal-dialog {
+    max-width: 90% !important;
+    margin: 1rem auto !important;
+  }
+
+  /* Truncado de texto específico */
+  .text-truncate-name {
+    max-width: 140px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+  }
+
+  .text-truncate-email {
+    max-width: 120px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+  }
+
+  .text-truncate-vendedor {
+    max-width: 120px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+  }
+
+  /* Optimización de estadísticas en header */
+  .stats-compact h5 {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .stats-compact small {
+    font-size: 0.7rem !important;
+  }
+
+  /* Espaciado reducido entre filas */
+  .table-compact tbody tr {
+    height: 55px !important;
+  }
+
+  /* Hover effect optimizado */
+  .table-compact tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.075) !important;
+  }
+
+  /* Scrollbar personalizada para tabla */
+  .table-responsive::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .table-responsive::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+
+  .table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+}
+
+/* Reglas específicas para exactamente 1366x768 */
+@media (width: 1366px) and (height: 768px) {
+  .container-fluid {
+    max-height: 720px !important;
+    overflow-y: hidden !important;
+  }
+
+  .table-responsive {
+    max-height: 55vh !important;
+  }
+}

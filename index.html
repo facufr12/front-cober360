@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- ✅ CAMBIAR ICONO AL LOGO DE COBER -->
+    <link rel="icon" type="image/svg+xml" href="/src/assets/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Sistema de gestión de prospectos y ventas para Cober360" />
+    <meta name="theme-color" content="#8B7EC8" />
+    <meta name="background-color" content="#2D3047" />
+    
+    <!-- Apple PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Cober360" />
+    <link rel="apple-touch-icon" href="/icons/icon-180x180.png" />
+    
+    <!-- Windows PWA Meta Tags -->
+    <meta name="msapplication-TileImage" content="/icons/icon-144x144.png" />
+    <meta name="msapplication-TileColor" content="#8B7EC8" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Preconnect para performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- ✅ ACTUALIZAR TÍTULO -->
+    <title>COBER 360 - Portal de Gestión</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Registrar Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('✅ SW registrado: ', registration);
+              
+              // Verificar actualizaciones
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // Nueva versión disponible - actualización silenciosa
+                    console.log('🔄 Nueva versión disponible (actualización automática en próxima carga)');
+                    // Auto-actualizar silenciosamente sin molestar al usuario
+                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                  }
+                });
+              });
+            })
+            .catch((error) => {
+              console.log('❌ SW registro falló: ', error);
+            });
+        });
+      }
+
+      // Detectar instalación de PWA
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('🔧 PWA: Prompt de instalación disponible');
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Mostrar botón de instalación personalizado
+        showInstallButton();
+      });
+
+      // Función para mostrar botón de instalación
+      function showInstallButton() {
+        // Crear botón de instalación
+        const installButton = document.createElement('button');
+        installButton.innerText = 'Instalar App';
+        installButton.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: #8B7EC8;
+          color: white;
+          border: none;
+          padding: 12px 20px;
+          border-radius: 25px;
+          font-weight: bold;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          cursor: pointer;
+          z-index: 1000;
+          transition: all 0.3s ease;
+        `;
+        
+        installButton.addEventListener('click', async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`🔧 PWA: Usuario ${outcome} la instalación`);
+            deferredPrompt = null;
+            installButton.remove();
+          }
+        });
+        
+        document.body.appendChild(installButton);
+        
+        // Auto-remover después de 10 segundos
+        setTimeout(() => {
+          if (installButton.parentNode) {
+            installButton.remove();
+          }
+        }, 10000);
+      }
+
+      // Detectar cuando la app se instala
+      window.addEventListener('appinstalled', (evt) => {
+        console.log('✅ PWA: App instalada exitosamente');
+      });
+    </script>
+  </body>
+</html>

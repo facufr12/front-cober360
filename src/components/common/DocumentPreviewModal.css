@@ -1,0 +1,207 @@
+/* Estilos para DocumentPreviewModal */
+
+/* Optimizaciones para móviles */
+@media (max-width: 768px) {
+  .mobile-document-modal .modal-dialog {
+    margin: 0.5rem;
+    max-width: calc(100% - 1rem);
+    height: calc(100vh - 1rem);
+  }
+  
+  .mobile-document-modal .modal-content {
+    height: 100%;
+    border-radius: 8px;
+  }
+  
+  .mobile-document-modal .modal-body {
+    padding: 1rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .mobile-document-modal .modal-header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .mobile-document-modal .modal-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #dee2e6;
+  }
+
+  /* Mejorar legibilidad en móviles */
+  .mobile-document-modal .modal-title {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  /* Botones más grandes en móviles */
+  .mobile-document-modal .btn-lg {
+    padding: 0.75rem 1.25rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+
+  /* Alertas más compactas */
+  .mobile-document-modal .alert {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+  }
+}
+
+/* Spinner de carga para PDFs */
+.pdf-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 10;
+}
+
+/* Iframe mejorado */
+.pdf-iframe-container {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-iframe-container iframe {
+  border: none;
+  background: white;
+}
+
+/* Estilos para el details/summary */
+details[open] summary {
+  margin-bottom: 1rem;
+  color: #0d6efd;
+}
+
+details summary {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+details summary:hover {
+  color: #0d6efd;
+}
+
+/* Botones de acción */
+.document-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 576px) {
+  .document-actions {
+    flex-direction: column;
+  }
+  
+  .document-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Mejoras para accesibilidad */
+.mobile-document-modal .btn:focus,
+.mobile-document-modal .btn-close:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  outline: none;
+}
+
+/* Indicadores visuales */
+.device-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Transiciones suaves */
+.mobile-document-modal .modal-dialog {
+  transition: transform 0.15s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-document-modal .modal-dialog {
+    transition: none;
+  }
+}
+
+/* Scrollbar personalizado para webkit */
+@media (max-width: 768px) {
+  .mobile-document-modal .modal-body::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .mobile-document-modal .modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+  
+  .mobile-document-modal .modal-body::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 2px;
+  }
+  
+  .mobile-document-modal .modal-body::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+}
+
+/* Estados de carga */
+.document-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.document-loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Contenedor de imagen responsivo */
+.image-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 70vh;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #f8f9fa;
+}
+
+.image-preview-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Estilos para pantallas muy pequeñas */
+@media (max-width: 320px) {
+  .mobile-document-modal .modal-dialog {
+    margin: 0.25rem;
+    max-width: calc(100% - 0.5rem);
+  }
+  
+  .mobile-document-modal .modal-header,
+  .mobile-document-modal .modal-footer {
+    padding: 0.5rem;
+  }
+  
+  .mobile-document-modal .modal-body {
+    padding: 0.75rem;
+  }
+}

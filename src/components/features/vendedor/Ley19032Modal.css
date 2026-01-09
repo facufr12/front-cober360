@@ -1,0 +1,45 @@
+.ley19032-modal .modal-header {
+  background: linear-gradient(135deg, #17a2b8, #138496);
+  color: white;
+}
+
+.ley19032-modal .modal-header .btn-close {
+  filter: invert(1);
+}
+
+.ley19032-preview {
+  background-color: #d1ecf1;
+  border: 1px solid #bee5eb;
+  border-radius: 0.375rem;
+  padding: 1rem;
+}
+
+.ley19032-preview table {
+  margin-bottom: 0;
+}
+
+.ley19032-preview .table-success {
+  background-color: #d4edda;
+}
+
+.ley19032-formula {
+  font-family: 'Courier New', monospace;
+  background-color: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border-left: 4px solid #17a2b8;
+  margin: 0.5rem 0;
+}
+
+.cotizacion-info {
+  background-color: #e7f3ff;
+  border: 1px solid #b3d9ff;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.cotizacion-info small {
+  font-size: 0.875rem;
+  color: #0056b3;
+}

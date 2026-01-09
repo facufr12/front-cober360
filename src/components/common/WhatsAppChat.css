@@ -1,0 +1,418 @@
+/* Estilos para el componente WhatsApp Chat */
+
+.whatsapp-modal .modal-content {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-modal .modal-header {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border-bottom: none;
+  padding: 1rem 1.5rem;
+}
+
+.whatsapp-modal .modal-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* 🎮 GAMING: Estilos de iconos gaming para WhatsApp */
+.whatsapp-stat-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  display: inline-block;
+  width: 2rem;
+  text-align: center;
+  margin-bottom: 0.25rem;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-stat-icon:hover {
+  transform: translateY(-2px);
+}
+
+.whatsapp-stat {
+  transition: all 0.2s ease;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.whatsapp-stat:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.whatsapp-stat-number {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  display: block;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.whatsapp-stat-label {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 2px;
+}
+
+/* Gaming effects para los diferentes tipos de estadísticas */
+.whatsapp-stat-number.active {
+  color: #4CAF50;
+  text-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+.whatsapp-stat-number.pending {
+  color: #FF9800;
+  text-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
+}
+
+.whatsapp-stat-number.unread {
+  color: #F44336;
+  text-shadow: 0 0 8px rgba(244, 67, 54, 0.5);
+  animation: unreadPulse 2s infinite;
+}
+
+@keyframes unreadPulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.whatsapp-conversaciones {
+  background-color: #f8f9fa;
+  min-height: 100%;
+}
+
+.whatsapp-conversaciones .card {
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-conversaciones .card:hover {
+  transform: translateY(-2px);
+}
+
+.whatsapp-chat {
+  background-color: #e5ddd5;
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(255,255,255,.15) 2%, transparent 50%),
+    radial-gradient(circle at 75px 75px, rgba(255,255,255,.1) 2%, transparent 50%);
+  background-size: 100px 100px;
+}
+
+.chat-header {
+  background: linear-gradient(135deg, #075E54 0%, #128C7E 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-mensajes {
+  background-color: #e5ddd5;
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(255,255,255,.1) 2%, transparent 50%),
+    radial-gradient(circle at 75px 75px, rgba(255,255,255,.05) 2%, transparent 50%);
+  background-size: 50px 50px;
+}
+
+.message-bubble {
+  position: relative;
+  word-wrap: break-word;
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-bubble.bg-primary {
+  background: linear-gradient(135deg, #34b7f1 0%, #1e88e5 100%) !important;
+  box-shadow: 0 2px 8px rgba(52, 183, 241, 0.3);
+}
+
+
+
+.message-bubble.bg-white {
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-bubble.bg-white::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-right-color: #ffffff;
+  border-bottom: 0;
+  border-left: 0;
+  margin-bottom: -8px;
+}
+
+.chat-input {
+  background-color: #f0f0f0;
+  border-top: 1px solid #d0d0d0;
+}
+
+.chat-input .form-control {
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  padding: 0.75rem 1rem;
+  background-color: #ffffff;
+}
+
+.chat-input .form-control:focus {
+  border-color: #25D366;
+  box-shadow: 0 0 0 0.2rem rgba(37, 211, 102, 0.25);
+}
+
+.chat-input .btn-success {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border: none;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+  transition: all 0.2s ease;
+}
+
+.chat-input .btn-success:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+/* ✅ NUEVO: Estilos específicos para el icono de flecha de WhatsApp */
+.chat-input .btn-success svg {
+  font-size: 16px;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.chat-input .btn-success:hover svg {
+  transform: rotate(45deg) scale(1.1);
+}
+
+/* ✅ NUEVO: Estilos para el icono de texto de WhatsApp */
+.whatsapp-send-icon {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.chat-input .btn-success:hover .whatsapp-send-icon {
+  transform: scale(1.1);
+}
+
+.whatsapp-conversaciones .list-group-item {
+  border-radius: 8px !important;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.whatsapp-conversaciones .list-group-item:hover {
+  background-color: #f8f9fa;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+  font-size: 0.75em;
+  padding: 0.4em 0.6em;
+}
+
+.text-whatsapp {
+  color: #25D366 !important;
+}
+
+.bg-whatsapp {
+  background-color: #25D366 !important;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .whatsapp-modal .modal-dialog {
+    margin: 0;
+    height: 100vh;
+    max-width: 100%;
+  }
+  
+  .whatsapp-modal .modal-content {
+    height: 100vh;
+    border-radius: 0;
+  }
+  
+  .whatsapp-modal .modal-body {
+    height: calc(100vh - 120px);
+  }
+  
+  .message-bubble {
+    max-width: 85% !important;
+  }
+}
+
+/* Animaciones adicionales */
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ✅ NUEVO: Animaciones para nuevos mensajes - SIN AFECTAR LAYOUT */
+.new-message-indicator {
+  animation: newMessagePulse 2s infinite;
+  will-change: opacity; /* Solo cambiar opacidad, no layout */
+}
+
+@keyframes newMessagePulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.message-sending {
+  opacity: 0.7;
+  position: relative;
+}
+
+.message-sending::after {
+  content: '⏳';
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.message-delivered {
+  animation: messageDelivered 0.5s ease;
+}
+
+@keyframes messageDelivered {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.real-time-indicator {
+  background: linear-gradient(90deg, #25D366, #34b7f1);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.7em;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f0f0f0;
+  border-radius: 15px;
+  margin: 5px;
+  animation: typing 1.5s infinite;
+}
+
+@keyframes typing {
+  0%, 60%, 100% { opacity: 0.3; }
+  30% { opacity: 1; }
+}
+
+.typing-dots {
+  display: flex;
+  gap: 3px;
+}
+
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  background: #666;
+  border-radius: 50%;
+  animation: typingDots 1.4s infinite;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingDots {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-10px); opacity: 1; }
+}
+
+/* Estados de entrega de mensajes */
+.message-status .fa-check {
+  font-size: 0.8em;
+}
+
+.message-status .fa-check-double {
+  font-size: 0.8em;
+}
+
+.message-status .text-info {
+  color: #17a2b8 !important;
+}
+
+/* Scrollbar personalizado */
+.chat-mensajes::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-mensajes::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.chat-mensajes::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.chat-mensajes::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}

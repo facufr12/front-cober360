@@ -1,0 +1,952 @@
+@import '../../assets/Style/fonts-fallback.scss';
+
+// Variables de colores modernos
+:root {
+  --navbar-bg: #ffffff;
+  --navbar-border: #e5e7eb;
+  --navbar-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --brand-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --action-hover: #f3f4f6;
+  --dropdown-bg: #ffffff;
+  --dropdown-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+// Prevenir problemas de scroll causados por animaciones
+* {
+  &.animate__animated {
+    // Asegurar que las animaciones no afecten el layout
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+}
+
+// 🛡️ Estilos para el diálogo de confirmación de logout
+.logout-confirmation-popup {
+  .swal2-html-container {
+    text-align: left !important;
+    padding: 1rem !important;
+    
+    p {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      strong {
+        color: #dc3545;
+        font-weight: 600;
+      }
+    }
+  }
+  
+  .swal2-actions {
+    gap: 1rem !important;
+    
+    .swal2-confirm {
+      background-color: #dc3545 !important;
+      border: none !important;
+      
+      &:hover {
+        background-color: #c82333 !important;
+      }
+    }
+    
+    .swal2-cancel {
+      background-color: #6c757d !important;
+      border: none !important;
+      
+      &:hover {
+        background-color: #5a6268 !important;
+      }
+    }
+  }
+}
+
+// NavBar principal - Aumentar altura
+.modern-navbar {
+  background: var(--navbar-bg) !important;
+  border-bottom: 1px solid var(--navbar-border);
+  box-shadow: var(--navbar-shadow);
+  padding: 1rem 0; // Aumentado de 0.5rem a 1rem
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1050;
+  height: 80px; // Aumentado de 60px a 80px
+  min-height: 80px;
+
+  .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+}
+
+// Ajustar padding del body cuando hay navbar
+body.has-navbar {
+  padding-top: 10px; // Aumentado de 60px a 80px
+}
+
+@media (max-width: 768px) {
+  .modern-navbar {
+    height: 50px; // Aumentado de 56px a 70px
+    min-height: 60px;
+    padding: 0.55rem 0; // Aumentado de 0.375rem a 0.75rem
+  }
+  
+  body.has-navbar {
+    padding-top: 5%; // Aumentado de 56px a 70px
+  }
+}
+
+// Sección del brand
+.navbar-brand-section {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+// Ajustar el tamaño del logo
+.modern-brand {
+  display: flex !important;
+  align-items: center;
+  text-decoration: none !important;
+  margin: 0;
+  padding: 0;
+
+  .brand-logo {
+    margin-right: 0.75rem; // Reducido de 1rem
+
+          .logo-circle {
+        width: 40px; // Reducido de 48px
+        height: 40px; // Reducido de 48px
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px; // Reducido de 12px
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+        .logo-text {
+          color: white;
+          font-family: var(--font-display);
+          font-weight: var(--font-weight-bold);
+          font-size: 12px; // Reducido de 14px
+          letter-spacing: var(--letter-spacing-tight);
+        }
+
+        .logo-image {
+          width: 32px;
+          height: 32px;
+          object-fit: contain;
+          border-radius: 6px;
+        }
+      }
+  }
+
+  .brand-content {
+    .brand-title-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .brand-title {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-semibold);
+      font-size: 1.1rem; // Reducido de 1.25rem
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .beta-badge {
+      font-size: 0.6rem !important;
+      padding: 0.2rem 0.4rem !important;
+      border-radius: 4px !important;
+      font-weight: 600 !important;
+      animation: betaPulse 2s infinite;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .brand-subtitle {
+      font-family: var(--font-secondary);
+      font-weight: var(--font-weight-regular);
+      font-size: 0.8rem; // Reducido de 0.875rem
+      color: var(--text-secondary);
+      line-height: 1;
+      margin: 0;
+    }
+  }
+}
+
+// Barra de búsqueda
+.navbar-search {
+  flex: 1;
+  max-width: 480px;
+  margin: 0 2rem;
+
+  .search-container {
+    position: relative;
+    width: 100%;
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      z-index: 2;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid var(--navbar-border);
+      border-radius: 12px;
+      background: #f9fafb;
+      font-family: var(--font-primary);
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      &::placeholder {
+        color: var(--text-secondary);
+      }
+    }
+  }
+}
+
+// Acciones del navbar
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  padding: 0.5rem !important;
+  border-radius: 8px !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative;
+  // Removido transform para evitar problemas de scroll
+
+  &:hover {
+    background: var(--action-hover) !important;
+    color: var(--text-primary) !important;
+    // Removido transform: translateY(-1px) que causaba problemas
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+  }
+}
+
+// Notifications badge - sin animaciones que afecten layout
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  font-size: 0.6rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  // Removido cualquier transform que pueda afectar el layout
+}
+
+// Dropdown moderno
+.modern-dropdown {
+  background: var(--dropdown-bg);
+  border: 1px solid var(--navbar-border);
+  border-radius: 12px;
+  box-shadow: var(--dropdown-shadow);
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  min-width: 280px;
+
+  .dropdown-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--navbar-border);
+    margin-bottom: 0.5rem;
+  }
+
+  .dropdown-divider {
+    margin: 0.5rem 0;
+    border-color: var(--navbar-border);
+  }
+}
+
+// Dropdown de notificaciones
+.notifications-dropdown {
+  .dropdown-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-title {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+    }
+  }
+
+  .notification-item {
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+
+    &:hover {
+      background: var(--action-hover);
+    }
+
+    .notification-content {
+      .notification-title {
+        font-family: var(--font-primary);
+        font-weight: var(--font-weight-medium);
+        font-size: 0.875rem;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .notification-time {
+        font-family: var(--font-secondary);
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+    }
+  }
+}
+
+// Usuario dropdown
+.user-dropdown-toggle {
+  border: none !important;
+  background: transparent !important;
+  padding: 0.5rem !important;
+  border-radius: 12px !important;
+  transition: background-color 0.2s ease;
+  // Removido transform para evitar problemas de scroll
+
+  &:hover {
+    background: var(--action-hover) !important;
+    // Removido transform: translateY(-1px) que causaba problemas
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+  }
+
+  &::after {
+    display: none;
+  }
+}
+
+.user-info-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // Reducido de 0.75rem
+
+  .user-avatar {
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+  }
+
+  .user-details {
+    text-align: left;
+
+    .user-name {
+      font-family: var(--font-primary);
+      font-weight: var(--font-weight-medium);
+      font-size: 0.8rem; // Reducido de 0.875rem
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .user-role {
+      margin-top: 0.125rem; // Reducido de 0.25rem
+    }
+  }
+}
+
+.user-dropdown {
+  min-width: 320px;
+
+  .user-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .user-dropdown-avatar {
+      color: var(--text-secondary);
+    }
+
+    .user-dropdown-info {
+      .user-dropdown-name {
+        font-family: var(--font-display);
+        font-weight: var(--font-weight-semibold);
+        font-size: 1rem;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .user-dropdown-email {
+        font-family: var(--font-secondary);
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+.dropdown-item-modern {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  transition: background-color 0.2s ease;
+  // Removido transform para evitar problemas de scroll
+
+  &:hover {
+    background: var(--action-hover);
+    // Removido transform: translateX(2px) que causaba problemas
+  }
+
+  .dropdown-icon {
+    color: var(--text-secondary);
+    width: 16px;
+    text-align: center;
+  }
+
+  .dropdown-content {
+    .dropdown-title {
+      font-family: var(--font-primary);
+      font-weight: var(--font-weight-medium);
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      margin-bottom: 0.125rem;
+    }
+
+    .dropdown-description {
+      font-family: var(--font-secondary);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+  }
+
+  &.logout-item {
+    border-top: 1px solid var(--navbar-border);
+    margin-top: 0.5rem;
+    color: #dc2626;
+
+    .dropdown-icon {
+      color: #dc2626;
+    }
+
+    .dropdown-title {
+      color: #dc2626;
+    }
+
+    &:hover {
+      background: #fef2f2;
+    }
+  }
+}
+
+// Modal moderno
+.modern-modal-header {
+  border-bottom: 1px solid var(--navbar-border);
+  padding: 1.5rem;
+
+  .modal-title {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+  }
+}
+
+.modern-modal-body {
+  padding: 1.5rem;
+
+  .profile-section {
+    margin-bottom: 2rem;
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--navbar-border);
+    }
+
+    .profile-item {
+      margin-bottom: 1rem;
+      padding: 0.75rem 0;
+
+      strong {
+        font-family: var(--font-primary);
+        font-weight: var(--font-weight-medium);
+        color: var(--text-primary);
+      }
+
+      span {
+        font-family: var(--font-secondary);
+        color: var(--text-secondary);
+      }
+    }
+  }
+}
+
+.modern-modal-footer {
+  border-top: 1px solid var(--navbar-border);
+  padding: 1.5rem;
+}
+
+// Contenedor del menú mobile
+.mobile-menu-container {
+  position: relative;
+}
+
+// Barra de acciones mobile
+.mobile-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  // Cuando solo hay el botón de usuario (caso admin)
+  &.admin-only {
+    justify-content: center;
+    gap: 0;
+    
+    .mobile-menu-toggle {
+      margin: 0;
+    }
+  }
+}
+
+// Icono de notificaciones mobile compacto
+.mobile-notification-icon {
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  padding: 0.4rem !important;
+  border-radius: 50% !important;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--action-hover) !important;
+    color: var(--text-primary) !important;
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// Punto de notificación mobile (círculo rojo simple)
+.mobile-notification-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background-color: #dc3545;
+  border-radius: 50%;
+  border: 1px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  animation: pulseNotification 2s infinite;
+}
+
+// Animación sutil para el punto de notificaciones
+@keyframes pulseNotification {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Botón de toggle del menú mobile
+.mobile-menu-toggle {
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  padding: 0.4rem !important;
+  border-radius: 50% !important;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--action-hover) !important;
+    color: var(--text-primary) !important;
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// Overlay del menú mobile
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+  backdrop-filter: blur(4px);
+}
+
+// Dropdown del menú mobile
+.mobile-menu-dropdown {
+  position: relative;
+  z-index: 1050;
+}
+
+// Contenido del menú mobile
+.mobile-menu-content {
+  position: fixed;
+  top: 80px; // Altura del navbar
+  right: 1rem;
+  width: 280px;
+  max-width: calc(100vw - 2rem);
+  background: var(--dropdown-bg);
+  border: 1px solid var(--navbar-border);
+  border-radius: 16px;
+  box-shadow: var(--dropdown-shadow);
+  z-index: 1050;
+  animation: slideInMobile 0.3s ease-out;
+}
+
+// Información del usuario en mobile
+.mobile-user-info {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .mobile-user-avatar {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+
+  .mobile-user-details {
+    flex: 1;
+    min-width: 0;
+
+    .mobile-user-name {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-semibold);
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mobile-user-email {
+      font-family: var(--font-secondary);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+// Divisor del menú mobile
+.mobile-menu-divider {
+  height: 1px;
+  background: var(--navbar-border);
+  margin: 0;
+}
+
+// Acciones del menú mobile
+.mobile-menu-actions {
+  padding: 0.5rem 0;
+}
+
+// Botones de acción en mobile
+.mobile-action-btn {
+  display: flex !important;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.75rem 1.5rem !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  text-align: left;
+  border-radius: 0 !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  // Removido transform para evitar problemas de scroll
+
+  &:hover {
+    background: var(--action-hover) !important;
+    color: var(--text-primary) !important;
+  }
+
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  span {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-medium);
+    font-size: 0.875rem;
+    flex: 1;
+  }
+
+  &.logout-btn {
+    color: #dc2626 !important;
+    
+    &:hover {
+      background: #fef2f2 !important;
+      color: #dc2626 !important;
+    }
+  }
+}
+
+// Animación para el menú mobile
+@keyframes slideInMobile {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Responsive - Ajustar para mobile
+@media (max-width: 768px) {
+  .mobile-menu-content {
+    top: 70px; // Altura del navbar en mobile
+  }
+  
+  .modern-navbar {
+    .navbar-actions {
+      gap: 0;
+    }
+  }
+  
+  // Ocultar acciones desktop en mobile
+  .desktop-actions {
+    display: none !important;
+  }
+  
+  // Asegurar que el menú mobile se vea solo en mobile
+  .mobile-menu-container {
+    display: block !important;
+  }
+  
+  // Ajustar badge BETA en mobile
+  .beta-badge {
+    font-size: 0.5rem !important;
+    padding: 0.15rem 0.3rem !important;
+  }
+  
+  .brand-title-container {
+    flex-wrap: wrap;
+    gap: 0.25rem !important;
+  }
+
+  // Ajustar acciones mobile en pantallas muy pequeñas
+  .mobile-actions-bar {
+    gap: 0.25rem;
+  }
+
+  .mobile-notification-icon {
+    padding: 0.3rem !important;
+    
+    svg {
+      font-size: 18px;
+    }
+  }
+
+  .mobile-menu-toggle {
+    padding: 0.3rem !important;
+    
+    svg {
+      font-size: 28px;
+    }
+  }
+
+  .mobile-notification-dot {
+    top: 1px;
+    right: 1px;
+    width: 7px;
+    height: 7px;
+  }
+}
+
+// Asegurar que el menú mobile no se vea en desktop
+@media (min-width: 769px) {
+  .mobile-menu-container {
+    display: none !important;
+  }
+}
+
+// Modal de notificaciones mobile
+.mobile-notifications-modal {
+  .modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom: none;
+    border-radius: 0.5rem 0.5rem 0 0;
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-semibold);
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-close {
+      filter: invert(1);
+    }
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+
+    .notification-item {
+      transition: background-color 0.2s ease;
+      
+      &:hover {
+        background: var(--action-hover) !important;
+      }
+
+      .notification-content {
+        .notification-title {
+          font-family: var(--font-primary);
+          font-weight: var(--font-weight-medium);
+          font-size: 0.9rem;
+          color: var(--text-primary);
+          margin-bottom: 0.25rem;
+          display: flex;
+          align-items: center;
+        }
+
+        .notification-time {
+          font-family: var(--font-secondary);
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    border-top: 1px solid var(--navbar-border);
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-notifications-modal {
+    .modal-dialog {
+      margin: 1rem;
+      max-width: calc(100% - 2rem);
+    }
+  }
+}
+
+// Animaciones
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes betaPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modern-dropdown {
+  animation: slideIn 0.2s ease-out;
+}
+
+// Dark mode (opcional)
+[data-theme="dark"] {
+  --navbar-bg: #1f2937;
+  --navbar-border: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --action-hover: #374151;
+  --dropdown-bg: #1f2937;
+}
+
+.mb-desktop-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+@media (max-width: 768px) {
+  .mb-desktop-2 {
+    margin-bottom: 0 !important;
+  }
+}
+
